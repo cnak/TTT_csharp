@@ -5,7 +5,7 @@ using System.Linq;
 namespace TicTacToe {
     public class Board
     {
-        private string grid;
+        private readonly string grid;
 
         public Board() : this("")
         {
@@ -23,12 +23,21 @@ namespace TicTacToe {
 
         public bool IsGameWon()
         {
-            return RowIsAllTheSame();
+            return RowIsAllTheSame() || IsLeftColumnTheSame();
         }
 
         private bool RowIsAllTheSame()
         {
             return TopRowIsSame() || MiddleRowTheSame() || BottomRowTheSame();
+        }
+        private bool IsLeftColumnTheSame()
+        {
+            return (IsColumnMarksTheSame(0, 3, 6));
+        }
+
+        private bool IsColumnMarksTheSame(int top, int middle, int bottom)
+        {
+            return (grid[top] == grid[middle]) && (grid[middle] == grid[bottom]);
         }
 
         private bool IsRowTheSame(int begining)
