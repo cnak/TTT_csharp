@@ -1,26 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TicTacToe {
-    class Board {
-        private readonly Dictionary<string, string> boardPositions;
+    public class Board
+    {
+        private string grid;
 
-        public Board() {
-            this.boardPositions = new Dictionary<string, string>();
+        public Board() : this("")
+        {
         }
 
-        public Board(Dictionary<string, string> boardPositions) {
-            this.boardPositions = boardPositions;
+        public Board(string grid)
+        {
+            this.grid = grid;
         }
 
         public bool IsGameOver()
         {
-            if (boardPositions.Count == 9)
-            {
-                return true;
-            }
-            return false;
+            return AreThereAnyMovesLeft();
         }
 
+        private bool AreThereAnyMovesLeft()
+        {
+            return !AnyMovesLeft();
+        }
+
+        private bool AnyMovesLeft()
+        {
+            IEnumerable<int> rangeOfMoves = Enumerable.Range(0,9);
+            
+            return rangeOfMoves.Contains(grid.Length);
+        }
     }
 }
