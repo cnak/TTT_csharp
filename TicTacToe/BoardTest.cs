@@ -34,13 +34,33 @@ namespace TicTacToe
         }
 
         [Test]
-        public void InformsGameHasBeenWon()
+        public void InformsGameHasNotBeenWon()
         {
-            Board board = new Board("XOX" +
+             Board board = new Board("XOX" +
+                                     "XXO" +
+                                     "OXO");
+
+            Assert.IsFalse((board.IsGameWon()));
+        }
+
+        [Test]
+        public void InformsGameHasBeenWonForTopRow()
+        {
+            Board board = new Board("XXX" +
                                     "OXO" +
-                                    "XOX");
+                                    "XOO");
 
             Assert.IsTrue((board.IsGameWon()));
         }
-   }
+//
+//        [Test]
+//        public void InformsGameHasBeenWonForMiddleRow()
+//        {
+//            Board board = new Board("XOX" +
+//                                    "OOO" +
+//                                    "XXO");
+//
+//            Assert.IsTrue((board.IsGameWon()));
+//        }
+    }
 }

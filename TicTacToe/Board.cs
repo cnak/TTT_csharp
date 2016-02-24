@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TicTacToe {
@@ -22,7 +23,18 @@ namespace TicTacToe {
 
         public bool IsGameWon()
         {
-            return true;
+            return RowIsAllTheSame();
+        }
+
+        private bool RowIsAllTheSame()
+        {
+            return TopRowIsSame();
+        }
+
+        private bool TopRowIsSame()
+        {
+            char[] markers = grid.Substring(0,3).ToArray();
+            return Array.TrueForAll(markers, marker => markers.Length > 0 && marker == markers[0] );
         }
 
         private bool AreThereAnyMovesLeft()
