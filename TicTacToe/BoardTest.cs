@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TicTacToe
 {
@@ -52,15 +48,25 @@ namespace TicTacToe
 
             Assert.IsTrue((board.IsGameWon()));
         }
-//
-//        [Test]
-//        public void InformsGameHasBeenWonForMiddleRow()
-//        {
-//            Board board = new Board("XOX" +
-//                                    "OOO" +
-//                                    "XXO");
-//
-//            Assert.IsTrue((board.IsGameWon()));
-//        }
+
+        [Test]
+        public void InformsGameHasBeenWonForMiddleRow()
+        {
+            Board board = new Board("XOX" +
+                                    "OOO" +
+                                    "XXO");
+
+            Assert.IsTrue((board.IsGameWon()));
+        }
+
+        [Test]
+        public void InformsGameHasBeenWonForBottomRow()
+        {
+            Board board = new Board("XOX" +
+                                    "XOX" +
+                                    "OOO");
+
+            Assert.IsTrue((board.IsGameWon()));
+        }
     }
 }

@@ -28,13 +28,28 @@ namespace TicTacToe {
 
         private bool RowIsAllTheSame()
         {
-            return TopRowIsSame();
+            return TopRowIsSame() || MiddleRowTheSame() || BottomRowTheSame();
+        }
+
+        private bool IsRowTheSame(int begining)
+        {
+            char[] markers = grid.Substring(begining,3).ToArray();
+            return Array.TrueForAll(markers, marker => markers.Length > 0 && marker == markers[0] );
+        }
+
+        private bool BottomRowTheSame()
+        {
+            return IsRowTheSame(6);
+        }
+
+        private bool MiddleRowTheSame()
+        {
+            return IsRowTheSame(3);
         }
 
         private bool TopRowIsSame()
         {
-            char[] markers = grid.Substring(0,3).ToArray();
-            return Array.TrueForAll(markers, marker => markers.Length > 0 && marker == markers[0] );
+            return IsRowTheSame(0);
         }
 
         private bool AreThereAnyMovesLeft()
