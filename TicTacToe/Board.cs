@@ -20,6 +20,11 @@ namespace TicTacToe {
             return AreThereAnyMovesLeft();
         }
 
+        public bool IsGameWon()
+        {
+            return true;
+        }
+
         private bool AreThereAnyMovesLeft()
         {
             return !AnyMovesLeft();
@@ -27,8 +32,8 @@ namespace TicTacToe {
 
         private bool AnyMovesLeft()
         {
-            IEnumerable<int> rangeOfMoves = Enumerable.Range(0,9);
-            
+            IEnumerable<int> rangeOfMoves = Enumerable.Range(0, 9);
+
             return rangeOfMoves.Contains(grid.Length);
         }
     }

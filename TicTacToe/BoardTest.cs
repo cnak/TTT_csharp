@@ -10,7 +10,7 @@ namespace TicTacToe
     class BoardTest
     {
         [Test]
-        public void informsTheGameIsNotOver()
+        public void InformsTheGameIsNotOver()
         {
             Board board = new Board();
 
@@ -18,7 +18,7 @@ namespace TicTacToe
         }
 
         [Test]
-        public void informsTheGameIsOverWithNoMoreMoves()
+        public void InformsTheGameIsOverWithNoMoreMoves()
         {
             Board board = new Board("XOXOXOXOX");
 
@@ -26,11 +26,21 @@ namespace TicTacToe
         }
 
         [Test]
-        public void informsGameIsNotOverWithMovesLeft()
+        public void InformsGameIsNotOverWithMovesLeft()
         {
             Board board = new Board("XOXO");
 
             Assert.IsFalse(board.IsGameOver());
+        }
+
+        [Test]
+        public void InformsGameHasBeenWon()
+        {
+            Board board = new Board("XOX" +
+                                    "OXO" +
+                                    "XOX");
+
+            Assert.IsTrue((board.IsGameWon()));
         }
    }
 }
