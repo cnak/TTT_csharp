@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class App
+    public class App
     {
-        private GameConsole console;
+        private IGameConsole console;
 
-        public App(GameConsole console)
+        public App(IGameConsole console)
         {
             this.console = console;
         }
