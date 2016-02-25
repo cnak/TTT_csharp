@@ -7,7 +7,7 @@ namespace TicTacToe {
     {
         private readonly string grid;
 
-        public Board() : this("---------")
+        public Board() : this(EmptyGrid())
         {
         }
 
@@ -114,6 +114,11 @@ namespace TicTacToe {
             var markers = grid.ToCharArray();
 
             return (grid.Length - markers.Count(IsValidMarker));
+        }
+
+        private static string EmptyGrid()
+        {
+            return "---------";
         }
     }
 }
