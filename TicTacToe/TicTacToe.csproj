@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.cs" />
-    <Compile Include="AppTest.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameTest.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="BoardTest.cs" />
     <Compile Include="FakeGameConsole.cs" />
