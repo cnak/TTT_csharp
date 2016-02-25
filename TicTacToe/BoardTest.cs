@@ -78,5 +78,16 @@ namespace TicTacToe
 
             Assert.IsTrue((board.IsGameWon()));
         }
+
+        [Test]
+        public void InformsGameHasBeenWonForMiddleColumn()
+        {
+            Board board = new Board("XXO" +
+                                    "OXX" +
+                                    "XXO");
+
+            Assert.IsTrue((board.IsGameWon()));
+        }
     }
+}
 }

@@ -18,18 +18,25 @@ namespace TicTacToe {
 
         public bool IsGameOver()
         {
+            this.gred[0] = X;
             return AreThereAnyMovesLeft();
         }
 
         public bool IsGameWon()
         {
-            return RowIsAllTheSame() || IsLeftColumnTheSame();
+            return RowIsAllTheSame() || IsLeftColumnTheSame() || IsMiddleColumnTheSame();
         }
 
         private bool RowIsAllTheSame()
         {
             return TopRowIsSame() || MiddleRowTheSame() || BottomRowTheSame();
         }
+
+        private bool IsMiddleColumnTheSame()
+        {
+            return (IsColumnMarksTheSame(1, 4, 7));
+        }
+
         private bool IsLeftColumnTheSame()
         {
             return (IsColumnMarksTheSame(0, 3, 6));
