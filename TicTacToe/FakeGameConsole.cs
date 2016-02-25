@@ -17,7 +17,7 @@ namespace TicTacToe {
             write(grid);
         }
 
-        private void write(string data)
+        public void Write(string data)
         {
             this.data.Enqueue(data);
         }
