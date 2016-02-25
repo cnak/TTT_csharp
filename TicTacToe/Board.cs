@@ -18,54 +18,85 @@ namespace TicTacToe {
 
         public bool IsGameOver()
         {
-            this.gred[0] = X;
             return AreThereAnyMovesLeft();
         }
 
         public bool IsGameWon()
         {
-            return RowIsAllTheSame() || IsLeftColumnTheSame() || IsMiddleColumnTheSame();
+            return AnyRowColumnsTheSame();
         }
 
-        private bool RowIsAllTheSame()
+        private bool AnyRowColumnsTheSame()
+        {
+            return AreAnyRowAllTheSame() || AreAnyColumnTheSame() || IsDiagonalRightTheSame() || IsDiagonalLeftTheSame();
+        }
+
+        private bool IsTheSameMarker(int firstPosition, int secondPosition, int thirdPosition)
+        {
+            if (!IsValidMarker(grid[firstPosition]))
+            {
+                return false;
+            }
+            return (new[]
+            {
+                grid[firstPosition], grid[secondPosition],
+                grid[thirdPosition]
+            }.Distinct().Count() == 1);
+        }
+
+        private bool AreAnyRowAllTheSame()
         {
             return TopRowIsSame() || MiddleRowTheSame() || BottomRowTheSame();
         }
 
+        private bool AreAnyColumnTheSame()
+        {
+            return IsLeftColumnTheSame() || IsRightColumnTheSame() || IsMiddleColumnTheSame();
+        }
+
+        private bool IsDiagonalLeftTheSame()
+        {
+            return IsTheSameMarker(2, 4, 8);
+        }
+
+        private bool IsDiagonalRightTheSame()
+        {
+            return IsTheSameMarker(0, 4, 8);
+        }
+
+        private bool IsRightColumnTheSame()
+        {
+            return IsTheSameMarker(2, 5, 8);
+        }
+
         private bool IsMiddleColumnTheSame()
         {
-            return (IsColumnMarksTheSame(1, 4, 7));
+            return IsTheSameMarker(1, 4, 7);
         }
 
         private bool IsLeftColumnTheSame()
         {
-            return (IsColumnMarksTheSame(0, 3, 6));
+            return IsTheSameMarker(0, 3, 6);
         }
 
-        private bool IsColumnMarksTheSame(int top, int middle, int bottom)
+        private bool IsValidMarker(char marker)
         {
-            return (grid[top] == grid[middle]) && (grid[middle] == grid[bottom]);
-        }
-
-        private bool IsRowTheSame(int begining)
-        {
-            char[] markers = grid.Substring(begining,3).ToArray();
-            return Array.TrueForAll(markers, marker => markers.Length > 0 && marker == markers[0] );
+            return marker == 'X' || marker == 'O';
         }
 
         private bool BottomRowTheSame()
         {
-            return IsRowTheSame(6);
+            return IsTheSameMarker(6,7,8);
         }
 
         private bool MiddleRowTheSame()
         {
-            return IsRowTheSame(3);
+            return IsTheSameMarker(3,4,5);
         }
 
         private bool TopRowIsSame()
         {
-            return IsRowTheSame(0);
+            return IsTheSameMarker(0, 1, 2);
         }
 
         private bool AreThereAnyMovesLeft()

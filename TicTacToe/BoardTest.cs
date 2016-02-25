@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-
+﻿using System.Linq;
+using NUnit.Framework;
 namespace TicTacToe
 {
     [TestFixture]
@@ -70,6 +70,16 @@ namespace TicTacToe
         }
 
         [Test]
+        public void InformsGameHasNotBeenWonForRowWithEmtpyCells()
+        {
+            Board board = new Board("---" +
+                                    "X-O" +
+                                    "--X");
+
+            Assert.IsFalse((board.IsGameWon()));
+        }
+
+        [Test]
         public void InformsGameHasBeenWonForLeftColumn()
         {
             Board board = new Board("XXO" +
@@ -88,6 +98,45 @@ namespace TicTacToe
 
             Assert.IsTrue((board.IsGameWon()));
         }
+
+        [Test]
+        public void InformsGameHasBeenWonForRightColumn()
+        {
+            Board board = new Board("OOX" +
+                                    "XOX" +
+                                    "OXX");
+
+            Assert.IsTrue((board.IsGameWon()));
+        }
+
+        [Test]
+        public void InformsGameHasNotBeenWonForColumnWithEmtpyCells()
+        {
+            Board board = new Board("--X" +
+                                    "--O" +
+                                    "--X");
+
+            Assert.IsFalse((board.IsGameWon()));
+        }
+
+        [Test]
+        public void InformsGameHasNotBeenWonForDiagonalLeft()
+        {
+            Board board = new Board("X--" +
+                                    "-XO" +
+                                    "X-X");
+
+            Assert.IsTrue((board.IsGameWon()));
+        }
+
+        [Test]
+        public void InformsGameHasNotBeenWonForDiagonalRight()
+        {
+            Board board = new Board("--X" +
+                                    "-XO" +
+                                    "X-X");
+
+            Assert.IsTrue((board.IsGameWon()));
+        }
     }
-}
 }
