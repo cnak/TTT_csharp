@@ -7,7 +7,7 @@ namespace TicTacToe {
     {
         private readonly string grid;
 
-        public Board() : this("")
+        public Board() : this("---------")
         {
         }
 
@@ -18,7 +18,7 @@ namespace TicTacToe {
 
         public bool IsGameOver()
         {
-            return AreThereAnyMovesLeft();
+            return AreThereAnyMovesLeft() || IsGameWon();
         }
 
         public bool IsGameWon()
@@ -34,14 +34,12 @@ namespace TicTacToe {
         private bool IsTheSameMarker(int firstPosition, int secondPosition, int thirdPosition)
         {
             if (!IsValidMarker(grid[firstPosition]))
-            {
                 return false;
-            }
-            return (new[]
-            {
-                grid[firstPosition], grid[secondPosition],
-                grid[thirdPosition]
+
+            return (new[] {
+                grid[firstPosition], grid[secondPosition],grid[thirdPosition]
             }.Distinct().Count() == 1);
+
         }
 
         private bool AreAnyRowAllTheSame()
@@ -106,9 +104,16 @@ namespace TicTacToe {
 
         private bool AnyMovesLeft()
         {
-            IEnumerable<int> rangeOfMoves = Enumerable.Range(0, 9);
+            IEnumerable<int> rangeOfMoves = Enumerable.Range(1, 9);
 
-            return rangeOfMoves.Contains(grid.Length);
+            return rangeOfMoves.Contains(CalculateRemainingMoves());
+        }
+
+        private int CalculateRemainingMoves()
+        {
+            var markers = grid.ToCharArray();
+
+            return (grid.Length - markers.Count(IsValidMarker));
         }
     }
 }

@@ -16,15 +16,37 @@ namespace TicTacToe
         [Test]
         public void InformsTheGameIsOverWithNoMoreMoves()
         {
-            Board board = new Board("XOXOXOXOX");
+            Board board = new Board("XOX"+ 
+                                    "OXO"+
+                                    "XOX");
 
             Assert.IsTrue(board.IsGameOver());
         }
 
         [Test]
+        public void InformsGameOverWhenGameIsWon()
+        {
+             Board board = new Board("XOX" +
+                                     "-XO" +
+                                     "-OX");
+            Assert.IsTrue(board.IsGameOver());
+        }
+
+        [Test]
+        public void InformsGameNotOverWhenGameRemainingMovesLeft()
+        {
+             Board board = new Board("XOX" +
+                                     "-XO" +
+                                     "-OO");
+            Assert.IsFalse(board.IsGameOver());
+        }
+
+        [Test]
         public void InformsGameIsNotOverWithMovesLeft()
         {
-            Board board = new Board("XOXO");
+            Board board = new Board("XOX" +
+                                    "---" +
+                                    "---");
 
             Assert.IsFalse(board.IsGameOver());
         }
