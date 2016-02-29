@@ -160,5 +160,19 @@ namespace TicTacToe
 
             Assert.IsTrue((board.IsGameWon()));
         }
+
+        [Test]
+        public void PlaysAMoveOnTheBoardOnEmptyBoard()
+        {
+            var emptyBoard = new Board("---------");
+
+            var expectedBoard = new Board("X--" +
+                                            "---" +
+                                            "---");
+
+            var newBoard = emptyBoard.MakeMove(1, "X");
+
+            Assert.AreEqual(expectedBoard.GetPositions(), newBoard.GetPositions());
+        }
     }
 }

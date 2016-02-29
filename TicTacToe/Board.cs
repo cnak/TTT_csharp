@@ -36,8 +36,9 @@ namespace TicTacToe {
             if (!IsValidMarker(grid[firstPosition]))
                 return false;
 
-            return (new[] {
-                grid[firstPosition], grid[secondPosition],grid[thirdPosition]
+            return (new[]
+            {
+                grid[firstPosition], grid[secondPosition], grid[thirdPosition]
             }.Distinct().Count() == 1);
 
         }
@@ -84,12 +85,12 @@ namespace TicTacToe {
 
         private bool BottomRowTheSame()
         {
-            return IsTheSameMarker(6,7,8);
+            return IsTheSameMarker(6, 7, 8);
         }
 
         private bool MiddleRowTheSame()
         {
-            return IsTheSameMarker(3,4,5);
+            return IsTheSameMarker(3, 4, 5);
         }
 
         private bool TopRowIsSame()
@@ -119,6 +120,21 @@ namespace TicTacToe {
         private static string EmptyGrid()
         {
             return "---------";
+        }
+
+        public string PositionAt(int position)
+        {
+            return grid[position].ToString();
+        }
+
+        public Board MakeMove(int position, string mark)
+        {
+            return new Board("X--------");
+        }
+
+        public string GetPositions()
+        {
+            return grid;
         }
     }
 }
