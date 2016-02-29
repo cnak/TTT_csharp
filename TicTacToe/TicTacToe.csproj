@@ -51,7 +51,7 @@
     <Compile Include="GameTest.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="BoardTest.cs" />
-    <Compile Include="FakeGameConsole.cs" />
+    <Compile Include="SpyGameConsole.cs" />
     <Compile Include="IGameConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

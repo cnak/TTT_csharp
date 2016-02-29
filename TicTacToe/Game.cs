@@ -25,7 +25,7 @@ namespace TicTacToe
 
         public void AskForInputPosition()
         {
-            console.Write("Please play a move");
+            console.AskForInputPosition();
         }
 
         public void PlayMove(int position)

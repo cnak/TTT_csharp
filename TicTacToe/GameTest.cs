@@ -6,11 +6,12 @@ namespace TicTacToe
     public class GameTest
     {
         private Game game;
-        private FakeGameConsole console;
+        private SpyGameConsole console;
 
         [SetUp]
         public void SetupGame()
         {
+            console = new SpyGameConsole();
             game = new Game(console);
         }
 
@@ -18,12 +19,13 @@ namespace TicTacToe
 //        public void ConsoleDisplaysOnStart() { 
 //            game.Start();
 //        }
-//
-//        [Test]
-//        public void AskInput()
-//        {
-//            game.AskForInputPosition();
-//        }
+
+        [Test]
+        public void AskInput()
+        {
+            game.AskForInputPosition();
+            Assert.IsTrue(console.wasAskInputCalled);
+        }
 
         [Test]
         public void PlaysMoveOnBoardAsXPlayer()
