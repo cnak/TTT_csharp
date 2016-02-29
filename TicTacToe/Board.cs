@@ -5,7 +5,7 @@ using System.Linq;
 namespace TicTacToe {
     public class Board
     {
-        private readonly string grid;
+        private readonly char[] grid;
 
         public Board() : this(EmptyGrid())
         {
@@ -13,7 +13,7 @@ namespace TicTacToe {
 
         public Board(string grid)
         {
-            this.grid = grid;
+            this.grid = grid.ToCharArray();
         }
 
         public bool IsGameOver()
@@ -24,6 +24,16 @@ namespace TicTacToe {
         public bool IsGameWon()
         {
             return AnyRowColumnsTheSame();
+        }
+
+        public string PositionAt(int position)
+        {
+            return grid[position].ToString();
+        }
+
+        public void MakeMove(int position, char mark)
+        {
+            grid[position] = mark;
         }
 
         private bool AnyRowColumnsTheSame()
@@ -112,29 +122,12 @@ namespace TicTacToe {
 
         private int CalculateRemainingMoves()
         {
-            var markers = grid.ToCharArray();
-
-            return (grid.Length - markers.Count(IsValidMarker));
+            return (grid.Length - grid.Count(IsValidMarker));
         }
 
         private static string EmptyGrid()
         {
             return "---------";
-        }
-
-        public string PositionAt(int position)
-        {
-            return grid[position].ToString();
-        }
-
-        public Board MakeMove(int position, string mark)
-        {
-            return new Board("X--------");
-        }
-
-        public string GetPositions()
-        {
-            return grid;
         }
     }
 }

@@ -164,15 +164,11 @@ namespace TicTacToe
         [Test]
         public void PlaysAMoveOnTheBoardOnEmptyBoard()
         {
-            var emptyBoard = new Board("---------");
+            var board = new Board();
 
-            var expectedBoard = new Board("X--" +
-                                            "---" +
-                                            "---");
+             board.MakeMove(1, 'X');
 
-            var newBoard = emptyBoard.MakeMove(1, "X");
-
-            Assert.AreEqual(expectedBoard.GetPositions(), newBoard.GetPositions());
+            Assert.AreEqual("X", board.PositionAt(1));
         }
     }
 }
