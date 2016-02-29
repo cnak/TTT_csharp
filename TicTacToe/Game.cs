@@ -30,22 +30,14 @@ namespace TicTacToe
 
         public void PlayMove(int position)
         {
-            this.board.MakeMove(position, currentPlayerMark);
+            board.MakeMove(position, currentPlayerMark);
             ToggleCurrentPlayerMark();
         }
 
         private void ToggleCurrentPlayerMark()
         {
-            if (currentPlayerMark == 'X')
-            {
-                currentPlayerMark = 'O';
-            }
-            else
-            {
-                currentPlayerMark = 'X';
-            }
+            currentPlayerMark = currentPlayerMark == 'X' ? 'O' : 'X';
         }
-
 
         public object PositionAt(int position)
         {
