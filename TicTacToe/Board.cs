@@ -43,7 +43,7 @@ namespace TicTacToe
 
         private void IsValidMove(int position, char mark)
         {
-            if (IsEmptyPosition(position))
+            if (position < 9 && IsEmptyPosition(position))
                 grid[position] = mark;
             else
                 throw new ArgumentException();

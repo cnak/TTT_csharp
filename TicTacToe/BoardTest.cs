@@ -181,5 +181,16 @@ namespace TicTacToe
             Assert.Throws<ArgumentException>(
                 () => board.MakeMove(3, 'O'));
         }
+
+        [Test]
+        public void ThrowsExceptionWhenMoveIsOutsideBoard()
+        {
+            var board = new Board("---"+
+                                  "---"+
+                                  "---");
+            Assert.Throws<ArgumentException>(
+                () => board.MakeMove(9, 'O'));
+        }
+
     }
 }
