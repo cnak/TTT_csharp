@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TicTacToe {
+namespace TicTacToe
+{
     public class Board
     {
         private readonly char[] grid;
@@ -33,7 +34,19 @@ namespace TicTacToe {
 
         public void MakeMove(int position, char mark)
         {
-            grid[position] = mark;
+            IsValidMove(position, mark);
+        }
+        private bool IsEmptyPosition(int position)
+        {
+            return !IsValidMarker(grid[position]);
+        }
+
+        private void IsValidMove(int position, char mark)
+        {
+            if (IsEmptyPosition(position))
+                grid[position] = mark;
+            else
+                throw new ArgumentException();
         }
 
         private bool AnyRowColumnsTheSame()

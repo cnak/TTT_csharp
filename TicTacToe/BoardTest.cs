@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 namespace TicTacToe
 {
@@ -169,6 +170,16 @@ namespace TicTacToe
              board.MakeMove(1, 'X');
 
             Assert.AreEqual("X", board.PositionAt(1));
+        }
+
+        [Test]
+        public void ThrowsExceptionWhenMoveIsPlaceOnOccupiedPosition()
+        {
+            var board = new Board("---"+
+                                  "X--"+
+                                  "---");
+            Assert.Throws<ArgumentException>(
+                () => board.MakeMove(3, 'O'));
         }
     }
 }
