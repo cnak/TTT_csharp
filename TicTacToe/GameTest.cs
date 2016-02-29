@@ -5,26 +5,40 @@ namespace TicTacToe
     [TestFixture]
     public class GameTest
     {
-        private FakeGameConsole console;
         private Game game;
+        private FakeGameConsole console;
 
-        public GameTest() {
-            console = new FakeGameConsole();
+        [SetUp]
+        public void SetupGame()
+        {
             game = new Game(console);
         }
 
+//        [Test]
+//        public void ConsoleDisplaysOnStart() { 
+//            game.Start();
+//        }
+//
+//        [Test]
+//        public void AskInput()
+//        {
+//            game.AskForInputPosition();
+//        }
+
         [Test]
-        public void ConsoleDisplaysOnStart() { 
-             string empty_grid = "-------\n|1|2|3|\n-------\n|4|5|6|\n-------\n|7|8|9|\n-------\n";
-            game.Start();
-            Assert.AreEqual(empty_grid, console.LastPrintedMessage());
+        public void PlaysMoveOnBoardAsXPlayer()
+        {
+            game.PlayMove(1);
+            var mark = game.PositionAt(1);
+            Assert.AreEqual("X", mark);
         }
 
         [Test]
-        public void AskInput()
+        public void SwitchesCurrentPlayerMark()
         {
-            game.AskForInputPosition();
-            Assert.AreEqual("Please Enter Input", console.LastPrintedMessage());
+            game.PlayMove(1);
+            game.PlayMove(4);
+            Assert.AreEqual("O", game.PositionAt(4));
         }
     }
 }
