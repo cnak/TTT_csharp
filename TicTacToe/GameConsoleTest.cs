@@ -18,7 +18,7 @@ namespace TicTacToe
         {
             var emptyBoard = "-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
 
             gameConsole.DisplayBoard();
 
@@ -31,7 +31,7 @@ namespace TicTacToe
         public void DisplaysBoardWithOneMove()
         {
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
             var playedBoard = "\n-------\n|-|-|-|\n-------\n|X|-|-|\n-------\n|-|-|-|\n-------\n";
 
             gameConsole.DisplayBoard(new Board("---X-----"));
@@ -39,6 +39,29 @@ namespace TicTacToe
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
             Assert.AreEqual(playedBoard, sr.ReadToEnd());
+        }
+
+        [Test]
+        public void AskForInputPosition()
+        {
+            MemoryStream stream = new MemoryStream();
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
+
+            gameConsole.AskForInputPosition();
+
+            StreamReader sr = new StreamReader(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            Assert.AreEqual("\nPlease Play a Move\n", sr.ReadToEnd());
+        }
+
+        [Test]
+        public void TakePlayerMove()
+        {
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
+
+            gameConsole = new GameConsole(new StreamReader(stream), null);
+
+            Assert.AreEqual(1, gameConsole.TakePlayerMove());
         }
     }
 }

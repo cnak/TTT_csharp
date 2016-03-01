@@ -10,9 +10,11 @@ namespace TicTacToe
     public class GameConsole
     {
         private readonly TextWriter writer;
+        private readonly TextReader reader;
 
-        public GameConsole(TextWriter writer)
+        public GameConsole(TextReader reader, TextWriter writer)
         {
+            this.reader = reader;
             this.writer = writer;
         }
 
@@ -41,6 +43,17 @@ namespace TicTacToe
                          "|" + board.PositionAt(6) +
                          "|" + board.PositionAt(7) +
                          "|" + board.PositionAt(8) + "|" + NewLine();
+        }
+
+        public void AskForInputPosition()
+        {
+            writer.Write("\nPlease Play a Move\n");
+            writer.Flush();
+        }
+
+        public int TakePlayerMove()
+        {
+            return int.Parse(reader.ReadLine());
         }
 
         private string NewLine()
