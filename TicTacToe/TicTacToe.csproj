@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="GameConsole.cs" />
+    <Compile Include="GameConsoleTest.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="BoardTest.cs" />
