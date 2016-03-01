@@ -20,7 +20,7 @@ namespace TicTacToe
 
         public void Start()
         {
-            console.DisplayBoard();
+            console.DisplayBoard(board);
         }
 
         public void AskForInputPosition()
