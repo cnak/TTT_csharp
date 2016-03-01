@@ -11,7 +11,7 @@ namespace TicTacToe
     [TestFixture]
     public class GameConsoleTest
     {
-        private GameConsole gameConsole;
+        private IGameConsole gameConsole;
 
         [Test]
         public void DisplaysEmptyTheBoard()

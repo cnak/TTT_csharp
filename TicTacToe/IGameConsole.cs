@@ -4,5 +4,6 @@
         void DisplayBoard(Board board);
         void AskForInputPosition();
         int TakePlayerMove();
+        void DisplayGameDrawnResult();
     }
 }
