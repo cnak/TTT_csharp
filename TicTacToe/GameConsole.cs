@@ -66,5 +66,11 @@ namespace TicTacToe
             writer.Write("\nIt was a Draw\n");
             writer.Flush();
         }
+
+        public void DisplayGameWonResult(string playerName)
+        {
+            writer.Write("\nPlayer " + playerName + " won\n");
+            writer.Flush();
+        }
     }
 }

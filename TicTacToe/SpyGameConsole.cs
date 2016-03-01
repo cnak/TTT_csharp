@@ -45,6 +45,11 @@ namespace TicTacToe {
             throw new NotImplementedException();
         }
 
+        public void DisplayGameWonResult(string playerName)
+        {
+            throw new NotImplementedException();
+        }
+
         public string LastPrintedMessage()
         {
             return data.Dequeue();
