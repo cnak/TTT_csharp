@@ -40,6 +40,11 @@ namespace TicTacToe {
             return 0;
         }
 
+        public void DisplayGameDrawnResult()
+        {
+            throw new NotImplementedException();
+        }
+
         public string LastPrintedMessage()
         {
             return data.Dequeue();
