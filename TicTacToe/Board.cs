@@ -36,6 +36,7 @@ namespace TicTacToe
         {
             IsValidMove(position, mark);
         }
+
         private bool IsEmptyPosition(int position)
         {
             return !IsValidMarker(grid[position]);
@@ -141,6 +142,16 @@ namespace TicTacToe
         private static string EmptyGrid()
         {
             return "---------";
+        }
+
+        public string GetWinner()
+        {
+            return IsGameWon() ? MostOccurencesMark() : "";
+        }
+
+        private string MostOccurencesMark()
+        {
+            return grid.GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key.ToString();
         }
     }
 }

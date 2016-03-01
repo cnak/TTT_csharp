@@ -192,5 +192,23 @@ namespace TicTacToe
                 () => board.MakeMove(9, 'O'));
         }
 
+        [Test]
+        public void ReturnXAsWinnerOfGame()
+        {
+            var board = new Board("XXX" +
+                                  "OXO" +
+                                  "XOO");
+
+            Assert.AreEqual("X", board.GetWinner());
+        }
+        [Test]
+        public void ReturnOAsWinnerOfGame()
+        {
+            var board = new Board("XXO" +
+                                  "OXO" +
+                                  "XOO");
+
+            Assert.AreEqual("O", board.GetWinner());
+        }
     }
 }
