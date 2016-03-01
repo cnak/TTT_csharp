@@ -43,5 +43,10 @@ namespace TicTacToe
         {
             return board.PositionAt(position);
         }
+
+        public int TakePlayerMove()
+        {
+            return console.TakePlayerMove();
+        }
     }
 }

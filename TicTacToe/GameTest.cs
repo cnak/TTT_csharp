@@ -15,16 +15,24 @@ namespace TicTacToe
             game = new Game(console);
         }
 
-//        [Test]
-//        public void ConsoleDisplaysOnStart() { 
-//            game.Start();
-//        }
+        [Test]
+        public void ConsoleDisplaysOnStart() { 
+            game.Start();
+            Assert.IsTrue(console.wasDisplayedBoardCalled);
+        }
 
         [Test]
         public void AskInput()
         {
             game.AskForInputPosition();
             Assert.IsTrue(console.wasAskInputCalled);
+        }
+
+        [Test]
+        public void TakePlayerMove()
+        {
+            game.TakePlayerMove();
+            Assert.IsTrue(console.wasTakePlayerMoveCalled);
         }
 
         [Test]

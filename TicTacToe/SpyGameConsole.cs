@@ -8,6 +8,8 @@ namespace TicTacToe {
         public bool wasAskInputCalled = false;
 
         private Queue<string> data = new Queue<string>();
+        public bool wasDisplayedBoardCalled = false;
+        public bool wasTakePlayerMoveCalled;
 
         public SpyGameConsole()
         { 
@@ -16,6 +18,7 @@ namespace TicTacToe {
 
         public void DisplayBoard()
         {
+            wasDisplayedBoardCalled = true;
             Write(grid);
         }
 
@@ -24,10 +27,17 @@ namespace TicTacToe {
             this.data.Enqueue(data);
         }
 
+
         public void AskForInputPosition()
         {
             wasAskInputCalled = true;
             Write("Please Play Move");
+        }
+
+        public int TakePlayerMove()
+        {
+            wasTakePlayerMoveCalled = true;
+            return 0;
         }
 
         public string LastPrintedMessage()
