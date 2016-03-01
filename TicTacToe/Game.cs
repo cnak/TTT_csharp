@@ -8,8 +8,8 @@ namespace TicTacToe
 {
     public class Game
     {
-        private IGameConsole console;
-        private Board board;
+        private readonly IGameConsole console;
+        private readonly Board board;
         private char currentPlayerMark = 'X';
 
         public Game(IGameConsole console)
