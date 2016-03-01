@@ -1,8 +1,7 @@
 ﻿namespace TicTacToe {
     public interface IGameConsole
     {
-        void DisplayBoard();
-        void Write(string input);
+        void DisplayBoard(Board board);
         void AskForInputPosition();
         int TakePlayerMove();
     }
