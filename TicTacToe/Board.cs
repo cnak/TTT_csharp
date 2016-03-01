@@ -17,7 +17,7 @@ namespace TicTacToe
             this.grid = grid.ToCharArray();
         }
 
-        public bool IsGameOver()
+        public virtual bool IsGameOver()
         {
             return IsGameWon() || AreThereAnyMovesLeft();
         }

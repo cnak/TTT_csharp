@@ -10,6 +10,7 @@ namespace TicTacToe {
         private Queue<string> data = new Queue<string>();
         public bool wasDisplayedBoardCalled = false;
         public bool wasTakePlayerMoveCalled;
+        public int numberOftTimesDisplayedCalled;
 
         public SpyGameConsole()
         { 
@@ -19,6 +20,7 @@ namespace TicTacToe {
         public void DisplayBoard(Board board)
         {
             wasDisplayedBoardCalled = true;
+            numberOftTimesDisplayedCalled += 1;
             Write(grid);
         }
 

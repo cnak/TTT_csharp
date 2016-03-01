@@ -16,9 +16,34 @@ namespace TicTacToe
         }
 
         [Test]
-        public void ConsoleDisplaysOnStart() { 
+        public void GameForZeroTurns()
+        {
+            Board board = new BoardStub(0);
+            game = new Game(board, console);
+
+            game.Start();
+
+            Assert.IsFalse(console.wasDisplayedBoardCalled);
+        }
+
+        [Test]
+        public void GameForOneTurn()
+        {
+            Board board = new BoardStub(1);
+            game = new Game(board, console);
+
             game.Start();
             Assert.IsTrue(console.wasDisplayedBoardCalled);
+        }
+
+        [Test]
+        public void GameForTwoTurns()
+        {
+            Board board = new BoardStub(2);
+            game = new Game(board, console);
+
+            game.Start();
+            Assert.AreEqual(2, console.numberOftTimesDisplayedCalled);
         }
 
         [Test]
@@ -49,6 +74,33 @@ namespace TicTacToe
             game.PlayMove(1);
             game.PlayMove(4);
             Assert.AreEqual("O", game.PositionAt(4));
+        }
+
+        private class BoardStub: Board
+        {
+            private int numberOfTurns;
+
+            public BoardStub(int numberOfTurns)
+            {
+                NumberOfTurns = numberOfTurns;
+            }
+
+            public int NumberOfTurns
+            {
+                get {
+                    return numberOfTurns;
+                }
+                set {
+                    numberOfTurns = value;
+                }
+            }
+
+            public override bool IsGameOver()
+            {
+                if (NumberOfTurns <= 0) return true;
+                NumberOfTurns -= 1;
+                return false;
+            }
         }
     }
 }

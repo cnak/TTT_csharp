@@ -18,9 +18,23 @@ namespace TicTacToe
             this.board = new Board();
         }
 
+        public Game(Board board, IGameConsole console)
+        {
+            this.board = board;
+            this.console = console;
+        }
+
         public void Start()
         {
-            console.DisplayBoard(board);
+            while (!board.IsGameOver())
+            {
+                console.DisplayBoard(board);
+            }
+//                AskForInputPosition();
+//                PlayMove(TakePlayerMove());
+//            }
+//            DisplayResult();
+
         }
 
         public void AskForInputPosition()
@@ -28,6 +42,17 @@ namespace TicTacToe
             console.AskForInputPosition();
         }
 
+        public void DisplayResult()
+        {
+            if (board.IsGameWon())
+            {
+                console.DisplayGameWonResult(board.GetWinner());
+            }
+            else
+            {
+                console.DisplayGameDrawnResult();
+            }
+        }
         public void PlayMove(int position)
         {
             board.MakeMove(position, currentPlayerMark);
