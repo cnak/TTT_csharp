@@ -16,7 +16,7 @@ namespace TicTacToe {
            grid = "-------\n|1|2|3|\n-------\n|4|5|6|\n-------\n|7|8|9|\n-------\n";
         }
 
-        public void DisplayBoard()
+        public void DisplayBoard(Board board)
         {
             wasDisplayedBoardCalled = true;
             Write(grid);
