@@ -167,9 +167,9 @@ namespace TicTacToe
         {
             var board = new Board();
 
-             board.MakeMove(1, 'X');
+             board.MakeMove(0, 'X');
 
-            Assert.AreEqual("X", board.PositionAt(1));
+            Assert.AreEqual("X", board.PositionAt(0));
         }
 
         [Test]
