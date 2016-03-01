@@ -16,11 +16,11 @@ namespace TicTacToe
         [Test]
         public void DisplaysEmptyTheBoard()
         {
-            var emptyBoard = "-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
+            var emptyBoard = "\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
             MemoryStream stream = new MemoryStream();
             gameConsole = new GameConsole(null, new StreamWriter(stream));
 
-            gameConsole.DisplayBoard();
+            gameConsole.DisplayBoard(new Board());
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
