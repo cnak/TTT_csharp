@@ -19,7 +19,7 @@ namespace TicTacToe
 
         public bool IsGameOver()
         {
-            return AreThereAnyMovesLeft() || IsGameWon();
+            return IsGameWon() || AreThereAnyMovesLeft();
         }
 
         public bool IsGameWon()
@@ -79,7 +79,7 @@ namespace TicTacToe
 
         private bool IsDiagonalLeftTheSame()
         {
-            return IsTheSameMarker(2, 4, 8);
+            return IsTheSameMarker(2, 4, 6);
         }
 
         private bool IsDiagonalRightTheSame()

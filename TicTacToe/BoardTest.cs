@@ -15,6 +15,17 @@ namespace TicTacToe
         }
 
         [Test]
+        public void ShouldReturnGameOver()
+        {
+            Board board = new Board("XOX"+ 
+                                    "OXO"+
+                                    "X--");
+
+            Assert.IsTrue(board.IsGameOver());
+        }
+
+
+        [Test]
         public void InformsTheGameIsOverWithNoMoreMoves()
         {
             Board board = new Board("XOX"+ 
@@ -197,7 +208,7 @@ namespace TicTacToe
         {
             var board = new Board("XXX" +
                                   "OXO" +
-                                  "XOO");
+                                  "X--");
 
             Assert.AreEqual("X", board.GetWinner());
         }
