@@ -63,5 +63,18 @@ namespace TicTacToe
 
             Assert.AreEqual(1, gameConsole.TakePlayerMove());
         }
+
+        [Test]
+        public void DisplayGameOverResult()
+        {
+            MemoryStream stream = new MemoryStream();
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
+
+            gameConsole.DisplayGameDrawnResult();
+
+            StreamReader sr = new StreamReader(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            Assert.AreEqual("\nIt was a Draw\n", sr.ReadToEnd());
+        }
     }
 }

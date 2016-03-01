@@ -60,5 +60,11 @@ namespace TicTacToe
         {
             return "\n-------\n";
         }
+
+        public void DisplayGameDrawnResult()
+        {
+            writer.Write("\nIt was a Draw\n");
+            writer.Flush();
+        }
     }
 }
