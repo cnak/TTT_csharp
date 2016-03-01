@@ -13,11 +13,10 @@ namespace TicTacToe
     {
         private GameConsole gameConsole;
 
-        private readonly string emptyBoard = "-------\n|1|2|3|\n-------\n|4|5|6|\n-------\n|7|8|9|\n-------\n";
-
         [Test]
         public void DisplaysEmptyTheBoard()
         {
+            var emptyBoard = "-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
             MemoryStream stream = new MemoryStream();
             gameConsole = new GameConsole(new StreamWriter(stream));
 
@@ -26,6 +25,20 @@ namespace TicTacToe
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
             Assert.AreEqual(emptyBoard, sr.ReadToEnd());
+        }
+
+        [Test]
+        public void DisplaysBoardWithOneMove()
+        {
+            MemoryStream stream = new MemoryStream();
+            gameConsole = new GameConsole(new StreamWriter(stream));
+            var playedBoard = "\n-------\n|-|-|-|\n-------\n|X|-|-|\n-------\n|-|-|-|\n-------\n";
+
+            gameConsole.DisplayBoard(new Board("---X-----"));
+
+            StreamReader sr = new StreamReader(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            Assert.AreEqual(playedBoard, sr.ReadToEnd());
         }
     }
 }

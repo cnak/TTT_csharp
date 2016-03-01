@@ -11,8 +11,6 @@ namespace TicTacToe
     {
         private readonly TextWriter writer;
 
-        private string board = "-------\n|1|2|3|\n-------\n|4|5|6|\n-------\n|7|8|9|\n-------\n";
-
         public GameConsole(TextWriter writer)
         {
             this.writer = writer;
@@ -20,8 +18,34 @@ namespace TicTacToe
 
         public void DisplayBoard()
         {
-            writer.Write(board);
+            var emptyBoard = "-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
+            writer.Write(emptyBoard);
             writer.Flush();
+        }
+
+        public void DisplayBoard(Board board)
+        {
+            writer.Write(FormatBoard(board));
+            writer.Flush();
+        }
+
+        private string FormatBoard(Board board)
+        {
+            return NewLine()
+                       + "|" + board.PositionAt(0) +
+                         "|" + board.PositionAt(1) + "|" +
+                               board.PositionAt(2) + "|" + NewLine() +
+                         "|" + board.PositionAt(3) +
+                         "|" + board.PositionAt(4) + "|" +
+                               board.PositionAt(5) + "|" + NewLine() +
+                         "|" + board.PositionAt(6) +
+                         "|" + board.PositionAt(7) +
+                         "|" + board.PositionAt(8) + "|" + NewLine();
+        }
+
+        private string NewLine()
+        {
+            return "\n-------\n";
         }
     }
 }
