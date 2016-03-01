@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    public class GameConsole
+    public class GameConsole : IGameConsole
     {
         private readonly TextWriter writer;
         private readonly TextReader reader;
