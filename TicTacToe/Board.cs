@@ -22,7 +22,7 @@ namespace TicTacToe
             return IsGameWon() || AreThereAnyMovesLeft();
         }
 
-        public bool IsGameWon()
+        public virtual bool IsGameWon()
         {
             return AnyRowColumnsTheSame();
         }

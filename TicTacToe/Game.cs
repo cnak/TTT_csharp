@@ -30,8 +30,7 @@ namespace TicTacToe
             {
                 PlayTurn();
             }
-//            }
-//            DisplayResult();
+            DisplayResult();
         }
 
         private void PlayTurn()
@@ -77,6 +76,5 @@ namespace TicTacToe
         {
             return console.TakePlayerMove();
         }
-
     }
 }

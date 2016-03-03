@@ -109,6 +109,29 @@ namespace TicTacToe
         }
 
         [Test]
+        public void DisplayDrawnResultOnGameOver()
+        {
+            var board = new BoardStub(0);
+            game = new Game(board, console);
+
+            game.Start();
+            Assert.IsTrue(console.wasDrawnResultDisplayed);
+        }
+
+
+        [Test]
+        public void DisplayWinningResultOnGameOver()
+        {
+            BoardStub board = new BoardStub(0);
+            board.SetGameWon(true);
+            game = new Game(board, console);
+
+            game.Start();
+
+            Assert.IsTrue(console.wasWinningResultDisplayed);
+        }
+
+        [Test]
         public void SwitchesCurrentPlayerMark()
         {
             game.PlayMove(1);
@@ -121,6 +144,7 @@ namespace TicTacToe
             private int numberOfTurns;
             private int timesPlayed;
             private bool wasMoveMade = false;
+            private bool gameWon;
 
             public BoardStub(int numberOfTurns)
             {
@@ -142,6 +166,11 @@ namespace TicTacToe
                 return timesPlayed;
             }
 
+            public void SetGameWon(bool isGameWon)
+            {
+                gameWon = isGameWon;
+            }
+
             public override bool IsGameOver()
             {
                 if (numberOfTurns > 0)
@@ -151,6 +180,11 @@ namespace TicTacToe
                     return false;
                 }
                 return true;
+            }
+
+            public override bool IsGameWon()
+            {
+                return gameWon;
             }
         }
     }

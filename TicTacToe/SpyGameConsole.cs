@@ -8,9 +8,12 @@ namespace TicTacToe {
         public bool wasAskInputCalled = false;
 
         private Queue<string> data = new Queue<string>();
+
+        public bool wasWinningResultDisplayed;
         public bool wasDisplayedBoardCalled = false;
         public bool wasTakePlayerMoveCalled;
         public int numberOftTimesDisplayedCalled;
+        public bool wasDrawnResultDisplayed;
 
         public SpyGameConsole()
         { 
@@ -29,7 +32,6 @@ namespace TicTacToe {
             this.data.Enqueue(data);
         }
 
-
         public void AskForInputPosition()
         {
             wasAskInputCalled = true;
@@ -44,12 +46,12 @@ namespace TicTacToe {
 
         public void DisplayGameDrawnResult()
         {
-            throw new NotImplementedException();
+            wasDrawnResultDisplayed = true;
         }
 
         public void DisplayGameWonResult(string playerName)
         {
-            throw new NotImplementedException();
+            wasWinningResultDisplayed = true;
         }
 
         public string LastPrintedMessage()
