@@ -55,6 +55,17 @@ namespace TicTacToe
         }
 
         [Test]
+        public void ShouldNotTakeNumbersBelowOne()
+        {
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("0"));
+
+            gameConsole = new GameConsole(new StreamReader(stream), null);
+
+            Assert.Throws<IndexOutOfRangeException>(
+                () => gameConsole.TakePlayerMove());
+        }
+
+        [Test]
         public void TakePlayerMove()
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
