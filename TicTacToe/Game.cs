@@ -15,7 +15,7 @@ namespace TicTacToe
         public Game(IGameConsole console)
         {
             this.console = console;
-            this.board = new Board();
+            board = new Board();
         }
 
         public Game(Board board, IGameConsole console)
@@ -26,19 +26,10 @@ namespace TicTacToe
 
         public void Start()
         {
-            while (!board.IsGameOver())
-            {
-                PlayTurn();
-            }
+            PlayGame();
             DisplayResult();
         }
 
-        private void PlayTurn()
-        {
-            console.DisplayBoard(board);
-            AskForInputPosition();
-            PlayMove(TakePlayerMove());
-        }
         public void AskForInputPosition()
         {
             console.AskForInputPosition();
@@ -47,13 +38,9 @@ namespace TicTacToe
         public void DisplayResult()
         {
             if (board.IsGameWon())
-            {
                 console.DisplayGameWonResult(board.GetWinner());
-            }
             else
-            {
                 console.DisplayGameDrawnResult();
-            }
         }
 
         public void PlayMove(int position)
@@ -68,12 +55,7 @@ namespace TicTacToe
             }
         }
 
-        private void ToggleCurrentPlayerMark()
-        {
-            currentPlayerMark = currentPlayerMark == 'X' ? 'O' : 'X';
-        }
-
-        public object PositionAt(int position)
+        public string PositionAt(int position)
         {
             return board.PositionAt(position);
         }
@@ -82,5 +64,34 @@ namespace TicTacToe
         {
             return console.TakePlayerMove();
         }
+
+        private void ToggleCurrentPlayerMark()
+        {
+            currentPlayerMark = currentPlayerMark == 'X' ? 'O' : 'X';
+        }
+
+        private void PlayTurn()
+        {
+            DisplayBoard();
+            AskForInputPosition();
+            PlayMove(TakePlayerMove());
+        }
+
+        private void DisplayBoard()
+        {
+            console.DisplayBoard(board);
+        }
+
+        private void PlayGame()
+        {
+            while (IsGameOver())
+                PlayTurn();
+        }
+
+        private bool IsGameOver()
+        {
+            return !board.IsGameOver();
+        }
+
     }
 }
