@@ -47,10 +47,10 @@ namespace TicTacToe
         {
             try
             {
-                board.MakeMove(position, currentPlayerMark);
+               board.MakeMove(position, currentPlayerMark);
                 ToggleCurrentPlayerMark();
             }
-            catch (ArgumentException)
+            catch (Exception ex) when (ex is ArgumentException || ex is IndexOutOfRangeException)
             {
             }
         }

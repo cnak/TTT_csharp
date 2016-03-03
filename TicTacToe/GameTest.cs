@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace TicTacToe
 {
@@ -64,6 +65,15 @@ namespace TicTacToe
 
             game.Start();
             Assert.IsTrue(console.wasTakePlayerMoveCalled);
+        }
+
+        [Test]
+        public void ShouldNotAcceptMovesBelowZero()
+        {
+            game.PlayMove(-1);
+            game.PlayMove(1);
+
+            Assert.AreEqual("X", game.PositionAt(1));
         }
 
         [Test]
