@@ -68,7 +68,7 @@ namespace TicTacToe
         }
 
         [Test]
-        public void ShouldNotAcceptMovesBelowZero()
+        public void DoesNotSwitchUserFOrMovesBelowZero()
         {
             game.PlayMove(-1);
             game.PlayMove(1);

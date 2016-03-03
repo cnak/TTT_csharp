@@ -53,12 +53,7 @@ namespace TicTacToe
 
         public int TakePlayerMove()
         {
-            var value = int.Parse(reader.ReadLine());
-
-            if (value < 1)
-                throw new IndexOutOfRangeException();
-
-            return value;
+             return int.Parse(reader.ReadLine());
         }
 
         private string NewLine()
