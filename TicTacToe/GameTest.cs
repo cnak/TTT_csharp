@@ -132,6 +132,14 @@ namespace TicTacToe
         }
 
         [Test]
+        public void ShouldNotSwitchPlayerIfPositionOccupied()
+        {
+            game.PlayMove(1);
+            game.PlayMove(1);
+            Assert.AreEqual("X", game.PositionAt(1));
+        }
+
+        [Test]
         public void SwitchesCurrentPlayerMark()
         {
             game.PlayMove(1);
