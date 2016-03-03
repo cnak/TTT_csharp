@@ -30,17 +30,15 @@ namespace TicTacToe
             {
                 PlayTurn();
             }
-//                AskForInputPosition();
-//                PlayMove(TakePlayerMove());
 //            }
 //            DisplayResult();
-
         }
 
-        public void PlayTurn()
+        private void PlayTurn()
         {
                 console.DisplayBoard(board);
-//                PlayMove(TakePlayerMove());
+                AskForInputPosition();
+                PlayMove(TakePlayerMove());
         }
         public void AskForInputPosition()
         {
@@ -58,6 +56,7 @@ namespace TicTacToe
                 console.DisplayGameDrawnResult();
             }
         }
+
         public void PlayMove(int position)
         {
             board.MakeMove(position, currentPlayerMark);

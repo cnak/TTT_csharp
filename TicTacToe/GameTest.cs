@@ -47,6 +47,36 @@ namespace TicTacToe
         }
 
         [Test]
+        public void PlaysAUsersMoveWhenUserTurn()
+        {
+            BoardStub board = new BoardStub(1);
+            game = new Game(board, console);
+
+            game.Start();
+            Assert.IsTrue(board.GetWasMoveMade());
+        }
+
+        [Test]
+        public void TakesAUserMovewWhenUserTurn()
+        {
+            BoardStub board = new BoardStub(1);
+            game = new Game(board, console);
+
+            game.Start();
+            Assert.IsTrue(console.wasTakePlayerMoveCalled);
+        }
+
+        [Test]
+        public void AskUserForInputWhenUserTurn()
+        {
+            BoardStub board = new BoardStub(1);
+            game = new Game(board, console);
+
+            game.Start();
+            Assert.IsTrue(console.wasAskInputCalled);
+        }
+
+        [Test]
         public void DisplaysBoardOnUsersTurn()
         {
             BoardStub board = new BoardStub(2);
@@ -90,10 +120,21 @@ namespace TicTacToe
         {
             private int numberOfTurns;
             private int timesPlayed;
+            private bool wasMoveMade = false;
 
             public BoardStub(int numberOfTurns)
             {
                 this.numberOfTurns = numberOfTurns;
+            }
+
+            public override void MakeMove(int position, char currentPlayerMark)
+            {
+                wasMoveMade = true;
+            }
+
+            public bool GetWasMoveMade()
+            {
+                return wasMoveMade;
             }
 
             public int GetTimesPlayed()
