@@ -111,6 +111,15 @@ namespace TicTacToe
         }
 
         [Test]
+        public void TakePlayerMoveMappingItToCorrectPositionOnBoard()
+        {
+            console.SetPlayerMove(5);
+            game.PlayMove(game.TakePlayerMove());
+
+            Assert.AreEqual("X", game.PositionAt(4));
+        }
+
+        [Test]
         public void PlaysMoveOnBoardAsXPlayer()
         {
             game.PlayMove(1);

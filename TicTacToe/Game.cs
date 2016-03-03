@@ -62,7 +62,7 @@ namespace TicTacToe
 
         public int TakePlayerMove()
         {
-            return console.TakePlayerMove();
+            return console.TakePlayerMove() -1;
         }
 
         private void ToggleCurrentPlayerMark()

@@ -5,6 +5,7 @@ namespace TicTacToe {
     internal class SpyGameConsole : IGameConsole
     {
         private readonly string grid;
+        private int playerMove = 0;
         public bool wasAskInputCalled = false;
 
         private Queue<string> data = new Queue<string>();
@@ -41,7 +42,7 @@ namespace TicTacToe {
         public int TakePlayerMove()
         {
             wasTakePlayerMoveCalled = true;
-            return 0;
+            return playerMove;
         }
 
         public void DisplayGameDrawnResult()
@@ -57,6 +58,11 @@ namespace TicTacToe {
         public string LastPrintedMessage()
         {
             return data.Dequeue();
+        }
+
+        public void SetPlayerMove(int playerMove)
+        {
+            this.playerMove = playerMove;
         }
     }
 }
