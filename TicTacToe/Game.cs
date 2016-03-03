@@ -35,9 +35,9 @@ namespace TicTacToe
 
         private void PlayTurn()
         {
-                console.DisplayBoard(board);
-                AskForInputPosition();
-                PlayMove(TakePlayerMove());
+            console.DisplayBoard(board);
+            AskForInputPosition();
+            PlayMove(TakePlayerMove());
         }
         public void AskForInputPosition()
         {
@@ -58,8 +58,14 @@ namespace TicTacToe
 
         public void PlayMove(int position)
         {
-            board.MakeMove(position, currentPlayerMark);
-            ToggleCurrentPlayerMark();
+            try
+            {
+                board.MakeMove(position, currentPlayerMark);
+                ToggleCurrentPlayerMark();
+            }
+            catch (ArgumentException)
+            {
+            }
         }
 
         private void ToggleCurrentPlayerMark()
