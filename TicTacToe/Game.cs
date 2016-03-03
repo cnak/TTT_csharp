@@ -28,7 +28,7 @@ namespace TicTacToe
         {
             while (!board.IsGameOver())
             {
-                console.DisplayBoard(board);
+                PlayTurn();
             }
 //                AskForInputPosition();
 //                PlayMove(TakePlayerMove());
@@ -37,6 +37,11 @@ namespace TicTacToe
 
         }
 
+        public void PlayTurn()
+        {
+                console.DisplayBoard(board);
+//                PlayMove(TakePlayerMove());
+        }
         public void AskForInputPosition()
         {
             console.AskForInputPosition();
@@ -73,5 +78,6 @@ namespace TicTacToe
         {
             return console.TakePlayerMove();
         }
+
     }
 }

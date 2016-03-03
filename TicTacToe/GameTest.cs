@@ -18,32 +18,42 @@ namespace TicTacToe
         [Test]
         public void GameForZeroTurns()
         {
-            Board board = new BoardStub(0);
+            BoardStub board = new BoardStub(0);
             game = new Game(board, console);
 
             game.Start();
 
-            Assert.IsFalse(console.wasDisplayedBoardCalled);
+            Assert.AreEqual(0, board.GetTimesPlayed());
         }
 
         [Test]
         public void GameForOneTurn()
         {
-            Board board = new BoardStub(1);
+            BoardStub board = new BoardStub(1);
             game = new Game(board, console);
 
             game.Start();
-            Assert.IsTrue(console.wasDisplayedBoardCalled);
+            Assert.AreEqual(1, board.GetTimesPlayed());
         }
 
         [Test]
         public void GameForTwoTurns()
         {
-            Board board = new BoardStub(2);
+            BoardStub board = new BoardStub(2);
             game = new Game(board, console);
 
             game.Start();
-            Assert.AreEqual(2, console.numberOftTimesDisplayedCalled);
+            Assert.AreEqual(2, board.GetTimesPlayed());
+        }
+
+        [Test]
+        public void DisplaysBoardOnUsersTurn()
+        {
+            BoardStub board = new BoardStub(2);
+            game = new Game(board, console);
+
+            game.Start();
+            Assert.IsTrue(console.wasDisplayedBoardCalled);
         }
 
         [Test]
@@ -79,27 +89,27 @@ namespace TicTacToe
         private class BoardStub: Board
         {
             private int numberOfTurns;
+            private int timesPlayed;
 
             public BoardStub(int numberOfTurns)
             {
-                NumberOfTurns = numberOfTurns;
+                this.numberOfTurns = numberOfTurns;
             }
 
-            public int NumberOfTurns
+            public int GetTimesPlayed()
             {
-                get {
-                    return numberOfTurns;
-                }
-                set {
-                    numberOfTurns = value;
-                }
+                return timesPlayed;
             }
 
             public override bool IsGameOver()
             {
-                if (NumberOfTurns <= 0) return true;
-                NumberOfTurns -= 1;
-                return false;
+                if (numberOfTurns > 0)
+                {
+                    timesPlayed += 1;
+                    numberOfTurns -= 1;
+                    return false;
+                }
+                return true;
             }
         }
     }
