@@ -32,7 +32,7 @@ namespace TicTacToe
             return grid[position].ToString();
         }
 
-        public void MakeMove(int position, char mark)
+        public virtual void MakeMove(int position, char mark)
         {
             IsValidMove(position, mark);
         }
