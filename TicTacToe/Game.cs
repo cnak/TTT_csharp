@@ -84,11 +84,11 @@ namespace TicTacToe
 
         private void PlayGame()
         {
-            while (IsGameOver())
+            while (IsGameNotOver())
                 PlayTurn();
         }
 
-        private bool IsGameOver()
+        private bool IsGameNotOver()
         {
             return !board.IsGameOver();
         }
