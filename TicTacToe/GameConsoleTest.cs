@@ -54,18 +54,7 @@ namespace TicTacToe
             Assert.AreEqual("\nPlease Play a Move\n", sr.ReadToEnd());
         }
 
-        [Test]
-        public void ShouldNotTakeNumbersBelowOne()
-        {
-            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("0"));
-
-            gameConsole = new GameConsole(new StreamReader(stream), null);
-
-            Assert.Throws<IndexOutOfRangeException>(
-                () => gameConsole.TakePlayerMove());
-        }
-
-        [Test]
+         [Test]
         public void TakePlayerMove()
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
