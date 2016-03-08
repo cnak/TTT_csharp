@@ -166,6 +166,33 @@ namespace TicTacToe
             Assert.AreEqual("O", game.PositionAt(4));
         }
 
+        [Test]
+        public void DisplayCurrentPlayerAsComputerPlayer()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer = new ComputerPlayer();
+            HumanPlayer human = new HumanPlayer();
+
+            game = new Game(board, console, human, computer);
+
+            Assert.AreEqual(game.CurrentPlayer(), human);
+        }
+
+        [Test]
+        public void SwitchToComputerPlayerForSecondMove()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer = new ComputerPlayer();
+            HumanPlayer human = new HumanPlayer();
+
+            game = new Game(board, console, human, computer);
+
+            game.PlayMove(1);
+            game.PlayMove(2);
+
+            Assert.AreEqual(computer, game.CurrentPlayer());
+        }
+
         private class BoardStub: Board
         {
             private int numberOfTurns;
