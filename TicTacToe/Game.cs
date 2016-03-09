@@ -11,10 +11,6 @@ namespace TicTacToe
         private readonly IGameConsole console;
         private readonly Board board;
         private char currentPlayerMark = 'X';
-        private HumanPlayer humanPlayer;
-        private IPlayer computerPlayer;
-        private IPlayer computerPlayer2;
-        private IPlayer computerPlayer1;
 
         private IPlayer currentPlayer;
         private IPlayer otherPlayer;
@@ -35,18 +31,12 @@ namespace TicTacToe
         {
             currentPlayer = human;
             otherPlayer = computer;
-
-            computerPlayer = computer;
-            humanPlayer = human;
         }
 
         public Game(Board board, IGameConsole console, ComputerPlayer computer1, ComputerPlayer computer2) : this(board, console)
         {
             currentPlayer = computer1;
             otherPlayer = computer2;
-
-            computerPlayer1 = computer1;
-            computerPlayer2 = computer2;
         }
 
         public void Start()
@@ -100,17 +90,17 @@ namespace TicTacToe
                 return console.TakePlayerMove() - 1;
             }
 
-            if (IsVaidPlayerMove()) 
-            {
-                return currentPlayer.GetMove(board);
-            }
-
-            return console.TakePlayerMove() - 1;
+            return GetPlayerMove();
         }
 
-        private bool IsVaidPlayerMove()
+        private int GetPlayerMove()
         {
-            return currentPlayer.GetMove(board) >= 0;
+            var playerMove = currentPlayer.GetMove(board);
+            if (playerMove >= 0)
+            {
+                return playerMove;
+            }
+            return console.TakePlayerMove() - 1;
         }
 
         private void ToggleCurrentPlayerMark()
