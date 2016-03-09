@@ -10,8 +10,10 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-//            App app = new App(console:);
-//            app.Start();
+            GameConsole gameConsole = new GameConsole(Console.In, Console.Out);
+
+            Game app = new Game(gameConsole);
+            app.Start();
         }
     }
 }

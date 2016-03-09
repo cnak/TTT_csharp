@@ -47,13 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.cs" />
-    <Compile Include="AppTest.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameConsole.cs" />
+    <Compile Include="GameConsoleTest.cs" />
+    <Compile Include="GameTest.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="BoardTest.cs" />
-    <Compile Include="GameTest.cs" />
-    <Compile Include="FakeGameConsole.cs" />
-    <Compile Include="GameConsole.cs" />
+    <Compile Include="SpyGameConsole.cs" />
+    <Compile Include="IGameConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
