@@ -220,6 +220,33 @@ namespace TicTacToe
             Assert.IsTrue(computerPlayer.wasGetMoveCalled);
         }
 
+        [Test]
+        public void SwitchesToComputerPlayer1AfterTurnForComputerVsComputer()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer1 = new ComputerPlayer();
+            ComputerPlayer computer2 = new ComputerPlayer();
+
+            game = new Game(board, console, computer1, computer2);
+
+            game.PlayMove(1);
+            game.PlayMove(2);
+            Assert.AreEqual(computer1, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void SwitchesToComputerPlayer2AfterTurn()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer1 = new ComputerPlayer();
+            ComputerPlayer computer2 = new ComputerPlayer();
+
+            game = new Game(board, console, computer1, computer2);
+
+            game.PlayMove(1);
+            Assert.AreEqual(computer2, game.CurrentPlayer());
+        }
+
         private class BoardStub: Board
         {
             private int numberOfTurns;

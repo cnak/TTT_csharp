@@ -13,7 +13,11 @@ namespace TicTacToe
         private char currentPlayerMark = 'X';
         private HumanPlayer humanPlayer;
         private IPlayer computerPlayer;
+        private IPlayer computerPlayer2;
+        private IPlayer computerPlayer1;
+
         private IPlayer currentPlayer;
+        private IPlayer otherPlayer;
 
         public Game(IGameConsole console)
         {
@@ -30,8 +34,19 @@ namespace TicTacToe
         public Game(Board board, IGameConsole console, HumanPlayer human, ComputerPlayer computer) : this(board, console)
         {
             currentPlayer = human;
+            otherPlayer = computer;
+
             computerPlayer = computer;
             humanPlayer = human;
+        }
+
+        public Game(Board board, IGameConsole console, ComputerPlayer computer1, ComputerPlayer computer2) : this(board, console)
+        {
+            currentPlayer = computer1;
+            otherPlayer = computer2;
+
+            computerPlayer1 = computer1;
+            computerPlayer2 = computer2;
         }
 
         public void Start()
@@ -57,9 +72,9 @@ namespace TicTacToe
         {
             try
             {
-               board.MakeMove(position, currentPlayerMark);
-               ToggleCurrentPlayerMark();
-               SwitchCurrentPlayer();
+                board.MakeMove(position, currentPlayerMark);
+                ToggleCurrentPlayerMark();
+                SwitchCurrentPlayer();
             }
             catch (Exception ex) when (ex is ArgumentException || ex is IndexOutOfRangeException)
             {
@@ -68,10 +83,9 @@ namespace TicTacToe
 
         private void SwitchCurrentPlayer()
         {
-            if (currentPlayer == humanPlayer)
-                currentPlayer = computerPlayer;
-            else
-                currentPlayer = humanPlayer;
+            var tempPlayer = currentPlayer;
+            currentPlayer = otherPlayer;
+            otherPlayer = tempPlayer;
         }
 
         public string PositionAt(int position)
@@ -81,12 +95,15 @@ namespace TicTacToe
 
         public int TakePlayerMove()
         {
-            if (currentPlayer == null) { return console.TakePlayerMove() - 1;}
+            if (currentPlayer == null)
+            {
+                return console.TakePlayerMove() - 1;
+            }
             if (currentPlayer == computerPlayer)
             {
                 return currentPlayer.GetMove(board);
             }
-            return console.TakePlayerMove() -1;
+            return console.TakePlayerMove() - 1;
         }
 
         private void ToggleCurrentPlayerMark()
