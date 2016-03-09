@@ -71,6 +71,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="BoardTest.cs" />
     <Compile Include="HumanPlayer.cs" />
+    <Compile Include="HumanPlayerTest.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="SpyGameConsole.cs" />
     <Compile Include="IGameConsole.cs" />

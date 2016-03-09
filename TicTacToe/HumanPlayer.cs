@@ -4,7 +4,7 @@
     {
         public int GetMove(Board board)
         {
-            throw new System.NotImplementedException();
+            return -1;
         }
     }
 }
