@@ -99,11 +99,18 @@ namespace TicTacToe
             {
                 return console.TakePlayerMove() - 1;
             }
-            if (currentPlayer == computerPlayer)
+
+            if (IsVaidPlayerMove()) 
             {
                 return currentPlayer.GetMove(board);
             }
+
             return console.TakePlayerMove() - 1;
+        }
+
+        private bool IsVaidPlayerMove()
+        {
+            return currentPlayer.GetMove(board) >= 0;
         }
 
         private void ToggleCurrentPlayerMark()
