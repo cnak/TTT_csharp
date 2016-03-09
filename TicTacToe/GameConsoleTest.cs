@@ -54,7 +54,7 @@ namespace TicTacToe
             Assert.AreEqual("\nPlease Play a Move\n", sr.ReadToEnd());
         }
 
-        [Test]
+         [Test]
         public void TakePlayerMove()
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));

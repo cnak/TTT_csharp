@@ -11,6 +11,9 @@ namespace TicTacToe
         private readonly IGameConsole console;
         private readonly Board board;
         private char currentPlayerMark = 'X';
+        private HumanPlayer humanPlayer;
+        private IPlayer computerPlayer;
+        private IPlayer currentPlayer;
 
         public Game(IGameConsole console)
         {
@@ -23,6 +26,20 @@ namespace TicTacToe
             this.board = board;
             this.console = console;
         }
+
+        public Game(Board board, IGameConsole console, HumanPlayer human, ComputerPlayer computer) : this(board, console)
+        {
+            currentPlayer = human;
+            computerPlayer = computer;
+            humanPlayer = human;
+        }
+
+//        public Game(GameSetup setup)
+//        {
+//            board = setup.Board();
+//            console = setup.Console();
+//            players = setup.Players();
+//        }
 
         public void Start()
         {
@@ -49,10 +66,19 @@ namespace TicTacToe
             {
                board.MakeMove(position, currentPlayerMark);
                 ToggleCurrentPlayerMark();
+                SwitchCurrentPlayer();
             }
             catch (Exception ex) when (ex is ArgumentException || ex is IndexOutOfRangeException)
             {
             }
+        }
+
+        private void SwitchCurrentPlayer()
+        {
+            if (currentPlayer == humanPlayer)
+                currentPlayer = computerPlayer;
+            else
+                computerPlayer = humanPlayer;
         }
 
         public string PositionAt(int position)
@@ -93,5 +119,9 @@ namespace TicTacToe
             return !board.IsGameOver();
         }
 
+        public object CurrentPlayer()
+        {
+            return currentPlayer;
+        }
     }
 }

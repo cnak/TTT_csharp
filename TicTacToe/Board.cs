@@ -37,7 +37,7 @@ namespace TicTacToe
             IsValidMove(position, mark);
         }
 
-        private bool IsEmptyPosition(int position)
+        public bool IsEmptyPosition(int position)
         {
             return !IsValidMarker(grid[position]);
         }
