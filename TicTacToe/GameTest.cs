@@ -8,6 +8,7 @@ namespace TicTacToe
     {
         private Game game;
         private SpyGameConsole console;
+        private SpyComputerPlayer computerPlayer;
 
         [SetUp]
         public void SetupGame()
@@ -188,9 +189,35 @@ namespace TicTacToe
             game = new Game(board, console, human, computer);
 
             game.PlayMove(1);
-            game.PlayMove(2);
 
             Assert.AreEqual(computer, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void SwitchToHumanPlayerForThirdMove()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer = new ComputerPlayer();
+            HumanPlayer human = new HumanPlayer();
+
+            game = new Game(board, console, human, computer);
+
+            game.PlayMove(1);
+            game.PlayMove(2);
+
+            Assert.AreEqual(human, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void TakeComputerPlayersMove()
+        {
+            var computerPlayer = new SpyComputerPlayer();
+
+            game = new Game(new Board(), console, new HumanPlayer(), computerPlayer);
+            game.PlayMove(0);
+            game.TakePlayerMove();
+
+            Assert.IsTrue(computerPlayer.wasGetMoveCalled);
         }
 
         private class BoardStub: Board
@@ -240,6 +267,17 @@ namespace TicTacToe
             {
                 return gameWon;
             }
+        }
+
+        private class SpyComputerPlayer : ComputerPlayer
+        {
+            public bool wasGetMoveCalled;
+
+            public override int GetMove(Board board)
+            {
+                wasGetMoveCalled = true;
+                return 0;
+            } 
         }
     }
 }

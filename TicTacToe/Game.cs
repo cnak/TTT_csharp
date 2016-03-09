@@ -34,13 +34,6 @@ namespace TicTacToe
             humanPlayer = human;
         }
 
-//        public Game(GameSetup setup)
-//        {
-//            board = setup.Board();
-//            console = setup.Console();
-//            players = setup.Players();
-//        }
-
         public void Start()
         {
             PlayGame();
@@ -65,8 +58,8 @@ namespace TicTacToe
             try
             {
                board.MakeMove(position, currentPlayerMark);
-                ToggleCurrentPlayerMark();
-                SwitchCurrentPlayer();
+               ToggleCurrentPlayerMark();
+               SwitchCurrentPlayer();
             }
             catch (Exception ex) when (ex is ArgumentException || ex is IndexOutOfRangeException)
             {
@@ -78,7 +71,7 @@ namespace TicTacToe
             if (currentPlayer == humanPlayer)
                 currentPlayer = computerPlayer;
             else
-                computerPlayer = humanPlayer;
+                currentPlayer = humanPlayer;
         }
 
         public string PositionAt(int position)
@@ -88,6 +81,11 @@ namespace TicTacToe
 
         public int TakePlayerMove()
         {
+            if (currentPlayer == null) { return console.TakePlayerMove() - 1;}
+            if (currentPlayer == computerPlayer)
+            {
+                return currentPlayer.GetMove(board);
+            }
             return console.TakePlayerMove() -1;
         }
 

@@ -2,7 +2,7 @@
 {
     public class ComputerPlayer : IPlayer
     {
-        public int GetMove(Board board)
+        public virtual int GetMove(Board board)
         {
             var bestMove = -1;
             var isFoundMove = false;

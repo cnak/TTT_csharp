@@ -215,8 +215,8 @@ namespace TicTacToe
         [Test]
         public void ReturnOAsWinnerOfGame()
         {
-            var board = new Board("XXO" +
-                                  "OXO" +
+            var board = new Board("OOO" +
+                                  "XX-" +
                                   "XOO");
 
             Assert.AreEqual("O", board.GetWinner());
