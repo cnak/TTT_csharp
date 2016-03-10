@@ -20,5 +20,16 @@ namespace TicTacToe
             
             Assert.IsTrue(console.wasDisplayGameOptionsCalled);
         }
+
+        [Test]
+        public void AskForGameOptionsChoiceOnStart()
+        {
+            var console = new SpyGameConsole();
+            var options = new GameOptions(console);
+
+            options.Start();
+            
+            Assert.IsTrue(console.wasTakeGameOptionsChoiceCalled);
+        }
     }
 }

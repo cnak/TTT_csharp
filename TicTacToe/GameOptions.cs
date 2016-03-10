@@ -12,6 +12,7 @@ namespace TicTacToe
         public void Start()
         {
             console.DisplayGameOptions();
+            console.TakeGameOptionsChoice();
         }
     }
 }

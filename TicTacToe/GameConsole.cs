@@ -61,6 +61,11 @@ namespace TicTacToe
             Write(boardOptions);
         }
 
+        public void TakeGameOptionsChoice()
+        {
+            throw new NotImplementedException();
+        }
+
         private string FormatBoard(Board board)
         {
             return NewLine()

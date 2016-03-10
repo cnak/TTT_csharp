@@ -16,6 +16,7 @@ namespace TicTacToe {
         public int numberOftTimesDisplayedCalled;
         public bool wasDrawnResultDisplayed;
         public bool wasDisplayGameOptionsCalled;
+        public bool wasTakeGameOptionsChoiceCalled;
 
         public SpyGameConsole()
         { 
@@ -59,6 +60,11 @@ namespace TicTacToe {
         public void DisplayGameOptions()
         {
             wasDisplayGameOptionsCalled = true;
+        }
+
+        public void TakeGameOptionsChoice()
+        {
+            wasTakeGameOptionsChoiceCalled = true;
         }
 
         public string LastPrintedMessage()
