@@ -20,7 +20,7 @@
 
         private int GetMappedMoveToBoard()
         {
-            return console.TakePlayerMove() - 1;
+            return console.TakePlayerChoice() - 1;
         }
     }
 }

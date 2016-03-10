@@ -81,7 +81,7 @@ namespace TicTacToe
 
             gameConsole = new GameConsole(new StreamReader(stream), null);
 
-            Assert.AreEqual(1, gameConsole.TakePlayerMove());
+            Assert.AreEqual(1, gameConsole.TakePlayerChoice());
         }
 
         [Test]

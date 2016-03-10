@@ -34,7 +34,7 @@ namespace TicTacToe
             Write("\nPlease Play a Move\n");
         }
 
-        public int TakePlayerMove()
+        public int TakePlayerChoice()
         {
              return int.Parse(reader.ReadLine());
         }

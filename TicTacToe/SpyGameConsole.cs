@@ -39,7 +39,7 @@ namespace TicTacToe {
             Write("Please Play Move");
         }
 
-        public int TakePlayerMove()
+        public int TakePlayerChoice()
         {
             wasTakePlayerMoveCalled = true;
             return playerMove;
