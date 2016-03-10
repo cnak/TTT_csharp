@@ -17,6 +17,7 @@ namespace TicTacToe {
         public bool wasDrawnResultDisplayed;
         public bool wasDisplayGameOptionsCalled;
         public bool wasTakeGameOptionsChoiceCalled;
+        private int gameOptionsChoice;
 
         public SpyGameConsole()
         { 
@@ -62,11 +63,6 @@ namespace TicTacToe {
             wasDisplayGameOptionsCalled = true;
         }
 
-        public void TakeGameOptionsChoice()
-        {
-            wasTakeGameOptionsChoiceCalled = true;
-        }
-
         public string LastPrintedMessage()
         {
             return data.Dequeue();
@@ -75,6 +71,17 @@ namespace TicTacToe {
         public void SetPlayerMove(int playerMove)
         {
             this.playerMove = playerMove;
+        }
+
+        public int TakeGameOptionsChoice()
+        {
+            wasTakeGameOptionsChoiceCalled = true;
+            return gameOptionsChoice;
+        }
+
+        public void setGameOptionsChoice(int choice)
+        {
+            this.gameOptionsChoice = choice;
         }
     }
 }

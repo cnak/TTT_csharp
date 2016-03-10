@@ -56,11 +56,6 @@ namespace TicTacToe
             DisplayResult();
         }
 
-        private void DisplayGameOptions()
-        {
-            console.DisplayGameOptions();
-        }
-
         public void AskForInputPosition()
         {
             console.AskForInputPosition();

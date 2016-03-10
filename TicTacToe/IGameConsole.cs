@@ -7,6 +7,6 @@
         void DisplayGameDrawnResult();
         void DisplayGameWonResult(string playerName);
         void DisplayGameOptions();
-        void TakeGameOptionsChoice();
+        int TakeGameOptionsChoice();
     }
 }

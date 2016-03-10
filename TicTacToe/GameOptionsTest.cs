@@ -31,5 +31,29 @@ namespace TicTacToe
             
             Assert.IsTrue(console.wasTakeGameOptionsChoiceCalled);
         }
+
+        [Test]
+        public void CreateAHumanVsComputerGame()
+        {
+            var console = new SpyGameConsole();
+            GameOptions options = new GameOptions(console);
+
+            console.setGameOptionsChoice(2);
+            options.Start();
+
+            Assert.IsTrue(options.GetGameType() == GameOptions.GameType.HumanVsComputer);
+        }
+
+        [Test]
+        public void CreateAHumanVsHumanGame()
+        {
+            var console = new SpyGameConsole();
+            GameOptions options = new GameOptions(console);
+
+            console.setGameOptionsChoice(1);
+            options.Start();
+
+            Assert.IsTrue(options.GetGameType() == GameOptions.GameType.HumanVsHuman);
+        }
     }
 }
