@@ -2,9 +2,20 @@
 {
     public class HumanPlayer : IPlayer
     {
+        private IGameConsole console;
+
+        public HumanPlayer()
+        {
+        }
+
+        public HumanPlayer(IGameConsole console)
+        {
+            this.console = console;
+        }
+
         public virtual int GetMove(Board board)
         {
-            return -1;
+            return console.TakePlayerMove();
         }
     }
 }
