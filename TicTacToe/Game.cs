@@ -52,8 +52,14 @@ namespace TicTacToe
 
         public void Start()
         {
+            DisplayGameOptions();
             PlayGame();
             DisplayResult();
+        }
+
+        private void DisplayGameOptions()
+        {
+            console.DisplayGameOptions();
         }
 
         public void AskForInputPosition()

@@ -15,6 +15,7 @@ namespace TicTacToe {
         public bool wasTakePlayerMoveCalled;
         public int numberOftTimesDisplayedCalled;
         public bool wasDrawnResultDisplayed;
+        public bool wasDisplayGameOptionsCalled;
 
         public SpyGameConsole()
         { 
@@ -57,7 +58,7 @@ namespace TicTacToe {
 
         public void DisplayGameOptions()
         {
-            throw new NotImplementedException();
+            wasDisplayGameOptionsCalled = true;
         }
 
         public string LastPrintedMessage()
