@@ -209,6 +209,32 @@ namespace TicTacToe
         }
 
         [Test]
+        public void StartAHumanVsHumanGameWithHuman1()
+        {
+            var board = new BoardStub(0);
+            var human1 = new HumanPlayer();
+            var human2 = new HumanPlayer();
+
+            game = new Game(board, console, human1, human2);
+
+            Assert.AreEqual(human1, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void SwitchToHumanPlayerForHumanVsHumanGame()
+        {
+            var board = new BoardStub(0);
+            var human1 = new HumanPlayer();
+            var human2 = new HumanPlayer();
+
+            game = new Game(board, console, human1, human2);
+
+            game.PlayMove(0);
+
+            Assert.AreEqual(human2, game.CurrentPlayer());
+        }
+
+        [Test]
         public void TakeHumanPlayersMove()
         {
             var humanPlayer = new SpyHumanPlayer();

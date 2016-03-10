@@ -39,6 +39,12 @@ namespace TicTacToe
             otherPlayer = computer2;
         }
 
+        public Game(Board board, IGameConsole console, HumanPlayer human1, HumanPlayer human2) : this(board, console)
+        {
+            currentPlayer = human1;
+            otherPlayer = human2;
+        }
+
         public void Start()
         {
             PlayGame();
