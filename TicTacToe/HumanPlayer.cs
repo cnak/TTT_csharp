@@ -2,7 +2,7 @@
 {
     public class HumanPlayer : IPlayer
     {
-        public int GetMove(Board board)
+        public virtual int GetMove(Board board)
         {
             return -1;
         }

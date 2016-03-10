@@ -209,6 +209,28 @@ namespace TicTacToe
         }
 
         [Test]
+        public void TakeHumanPlayersMove()
+        {
+            var humanPlayer = new SpyHumanPlayer();
+
+            game = new Game(new Board(), console, humanPlayer, new ComputerPlayer());
+            game.TakePlayerMove();
+
+            Assert.IsTrue(humanPlayer.wasGetMoveCalled);
+        }
+
+        private class SpyHumanPlayer : HumanPlayer
+        {
+            public bool wasGetMoveCalled;
+
+            public override int GetMove(Board board)
+            {
+                wasGetMoveCalled = true;
+                return 0;
+            }
+        }
+
+        [Test]
         public void TakeComputerPlayersMove()
         {
             var computerPlayer = new SpyComputerPlayer();
