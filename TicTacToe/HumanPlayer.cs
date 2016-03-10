@@ -15,7 +15,12 @@
 
         public virtual int GetMove(Board board)
         {
-            return console.TakePlayerMove();
+            return GetMappedMoveToBoard();
+        }
+
+        private int GetMappedMoveToBoard()
+        {
+            return console.TakePlayerMove() - 1;
         }
     }
 }

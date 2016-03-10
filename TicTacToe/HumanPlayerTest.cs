@@ -10,7 +10,7 @@ namespace TicTacToe
             var console = new SpyGameConsole();
             var player = new HumanPlayer(console);
 
-            console.SetPlayerMove(1);
+            console.SetPlayerMove(2);
 
             Assert.AreEqual(1, player.GetMove(new Board()));
         }

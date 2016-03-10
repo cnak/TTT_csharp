@@ -114,6 +114,9 @@ namespace TicTacToe
         [Test]
         public void TakePlayerMoveMappingItToCorrectPositionOnBoard()
         {
+            console = new SpyGameConsole();
+            game = new Game(console);
+
             console.SetPlayerMove(5);
             game.PlayMove(game.TakePlayerMove());
 

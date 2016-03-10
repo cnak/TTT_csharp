@@ -19,12 +19,17 @@ namespace TicTacToe
         {
             this.console = console;
             board = new Board();
+            currentPlayer = new HumanPlayer(console);
+            otherPlayer = new HumanPlayer(console);
         }
 
         public Game(Board board, IGameConsole console)
         {
             this.board = board;
             this.console = console;
+
+            currentPlayer = new HumanPlayer(console);
+            otherPlayer = new HumanPlayer(console);
         }
 
         public Game(Board board, IGameConsole console, HumanPlayer human, ComputerPlayer computer) : this(board, console)
@@ -77,13 +82,6 @@ namespace TicTacToe
             }
         }
 
-        private void SwitchCurrentPlayer()
-        {
-            var tempPlayer = currentPlayer;
-            currentPlayer = otherPlayer;
-            otherPlayer = tempPlayer;
-        }
-
         public string PositionAt(int position)
         {
             return board.PositionAt(position);
@@ -91,28 +89,21 @@ namespace TicTacToe
 
         public int TakePlayerMove()
         {
-            if (currentPlayer == null)
-            {
-                return console.TakePlayerMove() - 1;
-            }
-
-            return GetPlayerMove();
-        }
-
-        private int GetPlayerMove()
-        {
-            var playerMove = currentPlayer.GetMove(board);
-            if (playerMove >= 0)
-            {
-                return playerMove;
-            }
-            return console.TakePlayerMove() - 1;
+            return currentPlayer.GetMove(board);
         }
 
         private void ToggleCurrentPlayerMark()
         {
             currentPlayerMark = currentPlayerMark == 'X' ? 'O' : 'X';
         }
+
+        private void SwitchCurrentPlayer()
+        {
+            var tempPlayer = currentPlayer;
+            currentPlayer = otherPlayer;
+            otherPlayer = tempPlayer;
+        }
+
 
         private void PlayTurn()
         {
