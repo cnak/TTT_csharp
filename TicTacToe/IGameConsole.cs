@@ -6,5 +6,6 @@
         int TakePlayerMove();
         void DisplayGameDrawnResult();
         void DisplayGameWonResult(string playerName);
+        void DisplayGameOptions();
     }
 }

@@ -20,15 +20,45 @@ namespace TicTacToe
 
         public void DisplayBoard()
         {
-            var emptyBoard = "-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
-            writer.Write(emptyBoard);
-            writer.Flush();
+            var emptyBoard = NewLine() + "|-|-|-|" + NewLine() + "|-|-|-|" + NewLine() + "|-|-|-|" + NewLine();
+            Write(emptyBoard);
         }
 
         public void DisplayBoard(Board board)
         {
-            writer.Write(FormatBoard(board));
-            writer.Flush();
+            Write(FormatBoard(board));
+        }
+
+        public void AskForInputPosition()
+        {
+            Write("\nPlease Play a Move\n");
+        }
+
+        public int TakePlayerMove()
+        {
+             return int.Parse(reader.ReadLine());
+        }
+
+        public void DisplayGameDrawnResult()
+        {
+            Write("\nIt was a Draw\n");
+        }
+
+        public void DisplayGameWonResult(string playerName)
+        {
+            Write("\nPlayer " + playerName + " won\n");
+        }
+
+        public void DisplayGameOptions()
+        {
+            var boardOptions = NewLine() +
+                               "---Game Options---" +
+                               "1. Human Vs Computer" +
+                               "2. Human vs Human" +
+                               "3. Computer vs Computer" +
+                               "\n";
+            
+            Write(boardOptions);
         }
 
         private string FormatBoard(Board board)
@@ -45,32 +75,15 @@ namespace TicTacToe
                          "|" + board.PositionAt(8) + "|" + NewLine();
         }
 
-        public void AskForInputPosition()
+        private void Write(object obj)
         {
-            writer.Write("\nPlease Play a Move\n");
+            writer.Write(obj);
             writer.Flush();
-        }
-
-        public int TakePlayerMove()
-        {
-             return int.Parse(reader.ReadLine());
         }
 
         private string NewLine()
         {
             return "\n-------\n";
-        }
-
-        public void DisplayGameDrawnResult()
-        {
-            writer.Write("\nIt was a Draw\n");
-            writer.Flush();
-        }
-
-        public void DisplayGameWonResult(string playerName)
-        {
-            writer.Write("\nPlayer " + playerName + " won\n");
-            writer.Flush();
         }
     }
 }
