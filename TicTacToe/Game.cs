@@ -52,7 +52,6 @@ namespace TicTacToe
 
         public void Start()
         {
-            DisplayGameOptions();
             PlayGame();
             DisplayResult();
         }

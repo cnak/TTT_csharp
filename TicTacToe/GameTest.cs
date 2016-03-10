@@ -18,15 +18,6 @@ namespace TicTacToe
         }
 
         [Test]
-        public void DisplayGameOptionsOnStart()
-        {
-            BoardStub board = new BoardStub(0);
-            game = new Game(board, console);
-            game.Start();
-            Assert.IsTrue(console.wasDisplayGameOptionsCalled);
-        }
-
-        [Test]
         public void GameForZeroTurns()
         {
             BoardStub board = new BoardStub(0);
