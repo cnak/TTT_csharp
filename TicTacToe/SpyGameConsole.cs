@@ -5,7 +5,7 @@ namespace TicTacToe {
     internal class SpyGameConsole : IGameConsole
     {
         private readonly string grid;
-        private int playerMove = 0;
+        private int playerMove = -1;
         public bool wasAskInputCalled = false;
 
         private Queue<string> data = new Queue<string>();
