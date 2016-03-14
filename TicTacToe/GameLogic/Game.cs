@@ -19,8 +19,8 @@ namespace TicTacToe
         {
             this.console = console;
             board = new Board();
-            currentPlayer = new HumanPlayer(console);
-            otherPlayer = new HumanPlayer(console);
+            currentPlayer = new ConsoleHumanPlayer(console);
+            otherPlayer = new ConsoleHumanPlayer(console);
         }
 
         public Game(Board board, IGameConsole console)
@@ -28,13 +28,13 @@ namespace TicTacToe
             this.board = board;
             this.console = console;
 
-            currentPlayer = new HumanPlayer(console);
-            otherPlayer = new HumanPlayer(console);
+            currentPlayer = new ConsoleHumanPlayer(console);
+            otherPlayer = new ConsoleHumanPlayer(console);
         }
 
-        public Game(Board board, IGameConsole console, HumanPlayer human, ComputerPlayer computer) : this(board, console)
+        public Game(Board board, IGameConsole console, ConsoleHumanPlayer consoleHuman, ComputerPlayer computer) : this(board, console)
         {
-            currentPlayer = human;
+            currentPlayer = consoleHuman;
             otherPlayer = computer;
         }
 
@@ -44,7 +44,7 @@ namespace TicTacToe
             otherPlayer = computer2;
         }
 
-        public Game(Board board, IGameConsole console, HumanPlayer human1, HumanPlayer human2) : this(board, console)
+        public Game(Board board, IGameConsole console, ConsoleHumanPlayer human1, ConsoleHumanPlayer human2) : this(board, console)
         {
             currentPlayer = human1;
             otherPlayer = human2;

@@ -62,21 +62,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComputerPlayer.cs" />
-    <Compile Include="ComputerPlayerTest.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameConsole.cs" />
-    <Compile Include="GameConsoleTest.cs" />
-    <Compile Include="GameSetup.cs" />
-    <Compile Include="GameSetupTest.cs" />
-    <Compile Include="GameTest.cs" />
-    <Compile Include="Board.cs" />
-    <Compile Include="BoardTest.cs" />
-    <Compile Include="HumanPlayer.cs" />
-    <Compile Include="HumanPlayerTest.cs" />
-    <Compile Include="IPlayer.cs" />
-    <Compile Include="SpyGameConsole.cs" />
-    <Compile Include="IGameConsole.cs" />
+    <Compile Include="Players\ComputerPlayer.cs" />
+    <Compile Include="xTests\ComputerPlayerTest.cs" />
+    <Compile Include="GameLogic\Game.cs" />
+    <Compile Include="Views\GameConsole.cs" />
+    <Compile Include="xTests\GameConsoleTest.cs" />
+    <Compile Include="Views\ConsoleGameSetup.cs" />
+    <Compile Include="xTests\GameSetupTest.cs" />
+    <Compile Include="xTests\GameTest.cs" />
+    <Compile Include="GameLogic\Board.cs" />
+    <Compile Include="xTests\BoardTest.cs" />
+    <Compile Include="Players\ConsoleHumanPlayer.cs" />
+    <Compile Include="xTests\HumanPlayerTest.cs" />
+    <Compile Include="Players\IPlayer.cs" />
+    <Compile Include="xTests\SpyGameConsole.cs" />
+    <Compile Include="Views\IGameConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
