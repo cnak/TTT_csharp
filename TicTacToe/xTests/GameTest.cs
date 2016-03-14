@@ -7,13 +7,13 @@ namespace TicTacToe
     public class GameTest
     {
         private Game game;
-        private SpyGameConsole console;
+        private SpyConsoleGame console;
         private SpyComputerPlayer computerPlayer;
 
         [SetUp]
         public void SetupGame()
         {
-            console = new SpyGameConsole();
+            console = new SpyConsoleGame();
             game = new Game(console);
         }
 
@@ -125,7 +125,7 @@ namespace TicTacToe
         [Test]
         public void TakePlayerMoveMappingItToCorrectPositionOnBoard()
         {
-            console = new SpyGameConsole();
+            console = new SpyConsoleGame();
             game = new Game(console);
 
             console.SetPlayerMove(5);

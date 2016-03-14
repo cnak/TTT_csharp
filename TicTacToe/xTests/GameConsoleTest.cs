@@ -11,16 +11,16 @@ namespace TicTacToe
     [TestFixture]
     public class GameConsoleTest
     {
-        private IGameConsole gameConsole;
+        private IConsoleGame _consoleGame;
 
         [Test]
         public void TakeGameOptionsChoice()
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("3"));
 
-            gameConsole = new GameConsole(new StreamReader(stream), null);
+            _consoleGame = new ConsoleGame(new StreamReader(stream), null);
 
-            Assert.AreEqual(3, gameConsole.TakeGameOptionsChoice());
+            Assert.AreEqual(3, _consoleGame.TakeGameOptionsChoice());
         }
 
         [Test]
@@ -34,9 +34,9 @@ namespace TicTacToe
                                "\n";
 
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(null, new StreamWriter(stream));
+            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
 
-            gameConsole.DisplayGameOptions();
+            _consoleGame.DisplayGameOptions();
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -48,9 +48,9 @@ namespace TicTacToe
         {
             var emptyBoard = "\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(null, new StreamWriter(stream));
+            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
 
-            gameConsole.DisplayBoard(new Board());
+            _consoleGame.DisplayBoard(new Board());
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -61,10 +61,10 @@ namespace TicTacToe
         public void DisplaysBoardWithOneMove()
         {
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(null, new StreamWriter(stream));
+            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
             var playedBoard = "\n-------\n|-|-|-|\n-------\n|X|-|-|\n-------\n|-|-|-|\n-------\n";
 
-            gameConsole.DisplayBoard(new Board("---X-----"));
+            _consoleGame.DisplayBoard(new Board("---X-----"));
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -75,9 +75,9 @@ namespace TicTacToe
         public void AskForInputPosition()
         {
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(null, new StreamWriter(stream));
+            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
 
-            gameConsole.AskForInputPosition();
+            _consoleGame.AskForInputPosition();
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -89,18 +89,18 @@ namespace TicTacToe
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
 
-            gameConsole = new GameConsole(new StreamReader(stream), null);
+            _consoleGame = new ConsoleGame(new StreamReader(stream), null);
 
-            Assert.AreEqual(1, gameConsole.TakePlayerChoice());
+            Assert.AreEqual(1, _consoleGame.TakePlayerChoice());
         }
 
         [Test]
         public void DisplayGameWonResult()
         {
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(null, new StreamWriter(stream));
+            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
 
-            gameConsole.DisplayGameWonResult("X");
+            _consoleGame.DisplayGameWonResult("X");
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -111,9 +111,9 @@ namespace TicTacToe
         public void DisplayGameDrawnResult()
         {
             MemoryStream stream = new MemoryStream();
-            gameConsole = new GameConsole(null, new StreamWriter(stream));
+            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
 
-            gameConsole.DisplayGameDrawnResult();
+            _consoleGame.DisplayGameDrawnResult();
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);

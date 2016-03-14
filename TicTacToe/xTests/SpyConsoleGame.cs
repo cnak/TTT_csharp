@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace TicTacToe {
-    internal class SpyGameConsole : IGameConsole
+    internal class SpyConsoleGame : IConsoleGame
     {
         private readonly string grid;
         private int playerMove = -1;
@@ -19,7 +19,7 @@ namespace TicTacToe {
         public bool wasTakeGameOptionsChoiceCalled;
         private int gameOptionsChoice;
 
-        public SpyGameConsole()
+        public SpyConsoleGame()
         { 
            grid = "-------\n|1|2|3|\n-------\n|4|5|6|\n-------\n|7|8|9|\n-------\n";
         }

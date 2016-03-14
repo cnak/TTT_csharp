@@ -10,7 +10,7 @@ namespace TicTacToe
         [Test]
         public void CreateAHumanVsComputerGame()
         {
-            var console = new SpyGameConsole();
+            var console = new SpyConsoleGame();
             var gameSetup = new ConsoleGameSetup(console);
 
             console.setGameOptionsChoice(1);
@@ -23,7 +23,7 @@ namespace TicTacToe
         [Test]
         public void CreateAHumanVsHumanGame()
         {
-            var console = new SpyGameConsole();
+            var console = new SpyConsoleGame();
 
             console.setGameOptionsChoice(2);
             var gameSetup = new ConsoleGameSetup(console);
@@ -37,7 +37,7 @@ namespace TicTacToe
         [Test]
         public void CreateAComputerVsComputerGame()
         {
-            var console = new SpyGameConsole();
+            var console = new SpyConsoleGame();
 
             console.setGameOptionsChoice(3);
             var gameSetup = new ConsoleGameSetup(console);

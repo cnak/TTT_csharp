@@ -5,9 +5,9 @@ namespace TicTacToe
 {
     internal class ConsoleGameSetup
     {
-        private IGameConsole console;
+        private IConsoleGame console;
 
-        public ConsoleGameSetup(IGameConsole console)
+        public ConsoleGameSetup(IConsoleGame console)
         {
             this.console = console;
         }

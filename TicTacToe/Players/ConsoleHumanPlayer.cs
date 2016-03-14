@@ -2,13 +2,13 @@
 {
     public class ConsoleHumanPlayer : IPlayer
     {
-        private IGameConsole console;
+        private IConsoleGame console;
 
         public ConsoleHumanPlayer()
         {
         }
 
-        public ConsoleHumanPlayer(IGameConsole console)
+        public ConsoleHumanPlayer(IConsoleGame console)
         {
             this.console = console;
         }

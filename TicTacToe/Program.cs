@@ -10,13 +10,13 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            GameConsole gameConsole = new GameConsole(Console.In, Console.Out);
+            ConsoleGame consoleGame = new ConsoleGame(Console.In, Console.Out);
 
-            //            Game app = new Game(gameConsole);
+            //            Game app = new Game(ConsoleGame);
 //            ConsoleHumanPlayer human = new ConsoleHumanPlayer();
 //            ComputerPlayer computer = new ComputerPlayer();
-//            Game app = new Game(new Board(), gameConsole, human, computer);
-            Game app = new Game(new Board(), gameConsole, new ComputerPlayer(), new ComputerPlayer());
+//            Game app = new Game(new Board(), ConsoleGame, human, computer);
+            Game app = new Game(new Board(), consoleGame, new ComputerPlayer(), new ComputerPlayer());
             app.Start();
         }
     }

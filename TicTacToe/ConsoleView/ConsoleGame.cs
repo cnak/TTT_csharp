@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    public class GameConsole : IGameConsole
+    public class ConsoleGame : IConsoleGame
     {
         private readonly TextWriter writer;
         private readonly TextReader reader;
 
-        public GameConsole(TextReader reader, TextWriter writer)
+        public ConsoleGame(TextReader reader, TextWriter writer)
         {
             this.reader = reader;
             this.writer = writer;
