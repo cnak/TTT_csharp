@@ -18,6 +18,17 @@ namespace TicTacToe
         }
 
         [Test]
+        public void ReturnTheOtherPlayer()
+        {
+            var player1 = new HumanPlayer(console);
+            var player2 = new HumanPlayer(console);
+            game = new Game(new BoardStub(0), console, player1, player2);
+
+            Assert.AreEqual(player1, game.CurrentPlayer());
+            Assert.AreEqual(player2, game.OtherPlayer());
+        }
+
+        [Test]
         public void GameForZeroTurns()
         {
             BoardStub board = new BoardStub(0);

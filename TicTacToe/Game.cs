@@ -132,5 +132,10 @@ namespace TicTacToe
         {
             return currentPlayer;
         }
+
+        public IPlayer OtherPlayer()
+        {
+            return otherPlayer;
+        }
     }
 }
