@@ -3,8 +3,10 @@
     {
         void DisplayBoard(Board board);
         void AskForInputPosition();
-        int TakePlayerMove();
+        int TakePlayerChoice();
         void DisplayGameDrawnResult();
         void DisplayGameWonResult(string playerName);
+        void DisplayGameOptions();
+        int TakeGameOptionsChoice();
     }
 }

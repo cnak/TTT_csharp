@@ -8,12 +8,24 @@ namespace TicTacToe
     {
         private Game game;
         private SpyGameConsole console;
+        private SpyComputerPlayer computerPlayer;
 
         [SetUp]
         public void SetupGame()
         {
             console = new SpyGameConsole();
             game = new Game(console);
+        }
+
+        [Test]
+        public void ReturnTheOtherPlayer()
+        {
+            var player1 = new HumanPlayer(console);
+            var player2 = new HumanPlayer(console);
+            game = new Game(new BoardStub(0), console, player1, player2);
+
+            Assert.AreEqual(player1, game.CurrentPlayer());
+            Assert.AreEqual(player2, game.OtherPlayer());
         }
 
         [Test]
@@ -113,6 +125,9 @@ namespace TicTacToe
         [Test]
         public void TakePlayerMoveMappingItToCorrectPositionOnBoard()
         {
+            console = new SpyGameConsole();
+            game = new Game(console);
+
             console.SetPlayerMove(5);
             game.PlayMove(game.TakePlayerMove());
 
@@ -188,10 +203,124 @@ namespace TicTacToe
             game = new Game(board, console, human, computer);
 
             game.PlayMove(1);
-            game.PlayMove(2);
 
             Assert.AreEqual(computer, game.CurrentPlayer());
         }
+
+        [Test]
+        public void SwitchToHumanPlayerForThirdMove()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer = new ComputerPlayer();
+            HumanPlayer human = new HumanPlayer();
+
+            game = new Game(board, console, human, computer);
+
+            game.PlayMove(1);
+            game.PlayMove(2);
+
+            Assert.AreEqual(human, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void StartAHumanVsHumanGameWithHuman1()
+        {
+            var board = new BoardStub(0);
+            var human1 = new HumanPlayer();
+            var human2 = new HumanPlayer();
+
+            game = new Game(board, console, human1, human2);
+
+            Assert.AreEqual(human1, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void SwitchToHumanPlayerForHumanVsHumanGame()
+        {
+            var board = new BoardStub(0);
+            var human1 = new HumanPlayer();
+            var human2 = new HumanPlayer();
+
+            game = new Game(board, console, human1, human2);
+
+            game.PlayMove(0);
+
+            Assert.AreEqual(human2, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void TakeHumanPlayersMove()
+        {
+            var humanPlayer = new SpyHumanPlayer();
+
+            game = new Game(new Board(), console, humanPlayer, new ComputerPlayer());
+            game.TakePlayerMove();
+
+            Assert.IsTrue(humanPlayer.wasGetMoveCalled);
+        }
+
+        private class SpyHumanPlayer : HumanPlayer
+        {
+            public bool wasGetMoveCalled;
+
+            public override int GetMove(Board board)
+            {
+                wasGetMoveCalled = true;
+                return 0;
+            }
+        }
+
+        [Test]
+        public void TakeComputerPlayersMove()
+        {
+            var computerPlayer = new SpyComputerPlayer();
+
+            game = new Game(new Board(), console, new HumanPlayer(), computerPlayer);
+            game.PlayMove(0);
+            game.TakePlayerMove();
+
+            Assert.IsTrue(computerPlayer.wasGetMoveCalled);
+        }
+
+        [Test]
+        public void SwitchesToComputerPlayer1AfterTurnForComputerVsComputer()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer1 = new ComputerPlayer();
+            ComputerPlayer computer2 = new ComputerPlayer();
+
+            game = new Game(board, console, computer1, computer2);
+
+            game.PlayMove(1);
+            game.PlayMove(2);
+            Assert.AreEqual(computer1, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void SwitchesToComputerPlayer2AfterTurn()
+        {
+            var board = new BoardStub(0);
+            ComputerPlayer computer1 = new ComputerPlayer();
+            ComputerPlayer computer2 = new ComputerPlayer();
+
+            game = new Game(board, console, computer1, computer2);
+
+            game.PlayMove(1);
+            Assert.AreEqual(computer2, game.CurrentPlayer());
+        }
+
+        [Test]
+        public void TakeComputerPlayersMoveInComputerVsComputer()
+        {
+            var computerPlayer = new SpyComputerPlayer();
+
+            game = new Game(new Board(), console, new ComputerPlayer(), computerPlayer);
+            game.PlayMove(0);
+            game.TakePlayerMove();
+
+            Assert.IsTrue(computerPlayer.wasGetMoveCalled);
+        }
+
 
         private class BoardStub: Board
         {
@@ -240,6 +369,17 @@ namespace TicTacToe
             {
                 return gameWon;
             }
+        }
+
+        private class SpyComputerPlayer : ComputerPlayer
+        {
+            public bool wasGetMoveCalled;
+
+            public override int GetMove(Board board)
+            {
+                wasGetMoveCalled = true;
+                return 0;
+            } 
         }
     }
 }

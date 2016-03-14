@@ -5,7 +5,7 @@ namespace TicTacToe {
     internal class SpyGameConsole : IGameConsole
     {
         private readonly string grid;
-        private int playerMove = 0;
+        private int playerMove = -1;
         public bool wasAskInputCalled = false;
 
         private Queue<string> data = new Queue<string>();
@@ -15,6 +15,9 @@ namespace TicTacToe {
         public bool wasTakePlayerMoveCalled;
         public int numberOftTimesDisplayedCalled;
         public bool wasDrawnResultDisplayed;
+        public bool wasDisplayGameOptionsCalled;
+        public bool wasTakeGameOptionsChoiceCalled;
+        private int gameOptionsChoice;
 
         public SpyGameConsole()
         { 
@@ -39,7 +42,7 @@ namespace TicTacToe {
             Write("Please Play Move");
         }
 
-        public int TakePlayerMove()
+        public int TakePlayerChoice()
         {
             wasTakePlayerMoveCalled = true;
             return playerMove;
@@ -55,6 +58,11 @@ namespace TicTacToe {
             wasWinningResultDisplayed = true;
         }
 
+        public void DisplayGameOptions()
+        {
+            wasDisplayGameOptionsCalled = true;
+        }
+
         public string LastPrintedMessage()
         {
             return data.Dequeue();
@@ -63,6 +71,17 @@ namespace TicTacToe {
         public void SetPlayerMove(int playerMove)
         {
             this.playerMove = playerMove;
+        }
+
+        public int TakeGameOptionsChoice()
+        {
+            wasTakeGameOptionsChoiceCalled = true;
+            return gameOptionsChoice;
+        }
+
+        public void setGameOptionsChoice(int choice)
+        {
+            this.gameOptionsChoice = choice;
         }
     }
 }

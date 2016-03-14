@@ -11,35 +11,44 @@ namespace TicTacToe
         private readonly IGameConsole console;
         private readonly Board board;
         private char currentPlayerMark = 'X';
-        private HumanPlayer humanPlayer;
-        private IPlayer computerPlayer;
+
         private IPlayer currentPlayer;
+        private IPlayer otherPlayer;
 
         public Game(IGameConsole console)
         {
             this.console = console;
             board = new Board();
+            currentPlayer = new HumanPlayer(console);
+            otherPlayer = new HumanPlayer(console);
         }
 
         public Game(Board board, IGameConsole console)
         {
             this.board = board;
             this.console = console;
+
+            currentPlayer = new HumanPlayer(console);
+            otherPlayer = new HumanPlayer(console);
         }
 
         public Game(Board board, IGameConsole console, HumanPlayer human, ComputerPlayer computer) : this(board, console)
         {
             currentPlayer = human;
-            computerPlayer = computer;
-            humanPlayer = human;
+            otherPlayer = computer;
         }
 
-//        public Game(GameSetup setup)
-//        {
-//            board = setup.Board();
-//            console = setup.Console();
-//            players = setup.Players();
-//        }
+        public Game(Board board, IGameConsole console, ComputerPlayer computer1, ComputerPlayer computer2) : this(board, console)
+        {
+            currentPlayer = computer1;
+            otherPlayer = computer2;
+        }
+
+        public Game(Board board, IGameConsole console, HumanPlayer human1, HumanPlayer human2) : this(board, console)
+        {
+            currentPlayer = human1;
+            otherPlayer = human2;
+        }
 
         public void Start()
         {
@@ -64,21 +73,13 @@ namespace TicTacToe
         {
             try
             {
-               board.MakeMove(position, currentPlayerMark);
+                board.MakeMove(position, currentPlayerMark);
                 ToggleCurrentPlayerMark();
                 SwitchCurrentPlayer();
             }
             catch (Exception ex) when (ex is ArgumentException || ex is IndexOutOfRangeException)
             {
             }
-        }
-
-        private void SwitchCurrentPlayer()
-        {
-            if (currentPlayer == humanPlayer)
-                currentPlayer = computerPlayer;
-            else
-                computerPlayer = humanPlayer;
         }
 
         public string PositionAt(int position)
@@ -88,13 +89,21 @@ namespace TicTacToe
 
         public int TakePlayerMove()
         {
-            return console.TakePlayerMove() -1;
+            return currentPlayer.GetMove(board);
         }
 
         private void ToggleCurrentPlayerMark()
         {
             currentPlayerMark = currentPlayerMark == 'X' ? 'O' : 'X';
         }
+
+        private void SwitchCurrentPlayer()
+        {
+            var tempPlayer = currentPlayer;
+            currentPlayer = otherPlayer;
+            otherPlayer = tempPlayer;
+        }
+
 
         private void PlayTurn()
         {
@@ -122,6 +131,11 @@ namespace TicTacToe
         public object CurrentPlayer()
         {
             return currentPlayer;
+        }
+
+        public IPlayer OtherPlayer()
+        {
+            return otherPlayer;
         }
     }
 }

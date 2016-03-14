@@ -14,6 +14,36 @@ namespace TicTacToe
         private IGameConsole gameConsole;
 
         [Test]
+        public void TakeGameOptionsChoice()
+        {
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("3"));
+
+            gameConsole = new GameConsole(new StreamReader(stream), null);
+
+            Assert.AreEqual(3, gameConsole.TakeGameOptionsChoice());
+        }
+
+        [Test]
+        public void DisplayGameOptions()
+        {
+            var boardOptions = "\n-------\n" +
+                               "---Game Options---" +
+                               "1. Human Vs Computer" +
+                               "2. Human vs Human" +
+                               "3. Computer vs Computer" +
+                               "\n";
+
+            MemoryStream stream = new MemoryStream();
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
+
+            gameConsole.DisplayGameOptions();
+
+            StreamReader sr = new StreamReader(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            Assert.AreEqual(boardOptions, sr.ReadToEnd());
+        }
+
+        [Test]
         public void DisplaysEmptyTheBoard()
         {
             var emptyBoard = "\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
@@ -54,16 +84,16 @@ namespace TicTacToe
             Assert.AreEqual("\nPlease Play a Move\n", sr.ReadToEnd());
         }
 
-         [Test]
+        [Test]
         public void TakePlayerMove()
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
 
             gameConsole = new GameConsole(new StreamReader(stream), null);
 
-            Assert.AreEqual(1, gameConsole.TakePlayerMove());
+            Assert.AreEqual(1, gameConsole.TakePlayerChoice());
         }
-        
+
         [Test]
         public void DisplayGameWonResult()
         {

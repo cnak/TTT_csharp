@@ -12,7 +12,11 @@ namespace TicTacToe
         {
             GameConsole gameConsole = new GameConsole(Console.In, Console.Out);
 
-            Game app = new Game(gameConsole);
+            //            Game app = new Game(gameConsole);
+//            HumanPlayer human = new HumanPlayer();
+//            ComputerPlayer computer = new ComputerPlayer();
+//            Game app = new Game(new Board(), gameConsole, human, computer);
+            Game app = new Game(new Board(), gameConsole, new ComputerPlayer(), new ComputerPlayer());
             app.Start();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -151,7 +152,14 @@ namespace TicTacToe
 
         private string MostOccurencesMark()
         {
-            return grid.GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key.ToString();
+            if (CalculateRemainingMoves() == grid.Length) return "";
+
+            var validMarkers = new ArrayList();
+
+            foreach (var mark in grid.Where(IsValidMarker))
+                validMarkers.Add(mark);
+
+            return validMarkers.ToArray().GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key.ToString();
         }
     }
 }
