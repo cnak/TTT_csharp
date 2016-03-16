@@ -8,7 +8,6 @@ namespace TicTacToe
     {
         private Game game;
         private SpyConsoleGame console;
-        private SpyComputerPlayer computerPlayer;
 
         [SetUp]
         public void SetupGame()
