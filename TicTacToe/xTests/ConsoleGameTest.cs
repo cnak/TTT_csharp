@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace TicTacToe
@@ -36,12 +32,15 @@ namespace TicTacToe
         [Test]
         public void DisplayGameOptions()
         {
-            var boardOptions = "\n-------\n" +
+             var boardOptions = NewLine() +
                                "---Game Options---" +
+                               NewLine() +
                                "1. Human Vs Computer" +
+                               NewLine() +
                                "2. Human vs Human" +
+                               NewLine() +
                                "3. Computer vs Computer" +
-                               "\n";
+                               NewLine();
 
             MemoryStream stream = new MemoryStream();
             _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
@@ -128,6 +127,11 @@ namespace TicTacToe
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
             Assert.AreEqual("\nIt was a Draw\n", sr.ReadToEnd());
+        }
+
+         private string NewLine()
+        {
+            return "\n-------\n";
         }
     }
 }

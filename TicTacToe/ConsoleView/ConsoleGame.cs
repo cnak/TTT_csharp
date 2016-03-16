@@ -53,10 +53,13 @@ namespace TicTacToe
         {
             var boardOptions = NewLine() +
                                "---Game Options---" +
+                               NewLine() +
                                "1. Human Vs Computer" +
+                               NewLine() +
                                "2. Human vs Human" +
+                               NewLine() +
                                "3. Computer vs Computer" +
-                               "\n";
+                               NewLine();
             
             Write(boardOptions);
         }
