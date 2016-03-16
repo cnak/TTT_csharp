@@ -77,6 +77,8 @@
     <Compile Include="Players\ConsoleHumanPlayer.cs" />
     <Compile Include="xTests\HumanPlayerTest.cs" />
     <Compile Include="Players\IPlayer.cs" />
+    <Compile Include="GameLogic\Minimax.cs" />
+    <Compile Include="xTests\MinimaxTest.cs" />
     <Compile Include="xTests\SpyConsoleGame.cs" />
     <Compile Include="ConsoleView\IConsoleGame.cs" />
     <Compile Include="Program.cs" />
