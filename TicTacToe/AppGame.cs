@@ -14,14 +14,24 @@
 
         public void Start()
         {
-            console.DisplayGameOptions();
-            game = setup.SetupGame();
+            DisplayGameOptions();
+            SetupGame();
             game.Start();
         }
 
         public Game GetGame()
         {
             return game;
+        }
+
+        private void SetupGame()
+        {
+            game = setup.SetupGame();
+        }
+
+        private void DisplayGameOptions()
+        {
+            console.DisplayGameOptions();
         }
     }
 }

@@ -11,9 +11,8 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            ConsoleGame consoleGame = new ConsoleGame(Console.In, Console.Out);
-//            Game app = new Game(new Board(), consoleGame, new ComputerPlayer(), new ComputerPlayer());
-AppGame app = new AppGame(consoleGame, new ConsoleGameSetup(consoleGame));
+            var consoleGame = new ConsoleGame(Console.In, Console.Out);
+            var app = new AppGame(consoleGame, new ConsoleGameSetup(consoleGame));
             app.Start();
         }
     }
