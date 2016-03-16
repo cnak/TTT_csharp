@@ -68,7 +68,7 @@
     <Compile Include="xTests\ComputerPlayerTest.cs" />
     <Compile Include="GameLogic\Game.cs" />
     <Compile Include="ConsoleView\ConsoleGame.cs" />
-    <Compile Include="xTests\GameConsoleTest.cs" />
+    <Compile Include="xTests\ConsoleGameTest.cs" />
     <Compile Include="ConsoleView\ConsoleGameSetup.cs" />
     <Compile Include="xTests\GameSetupTest.cs" />
     <Compile Include="xTests\GameTest.cs" />

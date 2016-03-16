@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace TicTacToe
 {
     [TestFixture]
-    public class GameConsoleTest
+    public class ConsoleGameTest
     {
         private IConsoleGame _consoleGame;
 
