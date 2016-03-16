@@ -50,7 +50,7 @@ namespace TicTacToe
             otherPlayer = human2;
         }
 
-        public void Start()
+        public virtual void Start()
         {
             PlayGame();
             DisplayResult();

@@ -14,7 +14,17 @@ namespace TicTacToe
         private IConsoleGame _consoleGame;
 
         [Test]
-        public void TakeGameOptionsChoice()
+        public void TakeNumber1AsGameOptionsChoice()
+        {
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
+
+            _consoleGame = new ConsoleGame(new StreamReader(stream), null);
+
+            Assert.AreEqual(1, _consoleGame.TakeGameOptionsChoice());
+        }
+
+        [Test]
+        public void TakeNumber3AsGameOptionsChoice()
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("3"));
 

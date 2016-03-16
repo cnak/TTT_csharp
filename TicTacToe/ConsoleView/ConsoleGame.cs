@@ -63,7 +63,7 @@ namespace TicTacToe
 
         public int TakeGameOptionsChoice()
         {
-            return 3;
+            return TakePlayerChoice();
         }
 
         private string FormatBoard(Board board)

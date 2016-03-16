@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Players\ComputerPlayer.cs" />
+    <Compile Include="AppGame.cs" />
+    <Compile Include="xTests\AppGameTest.cs" />
     <Compile Include="xTests\ComputerPlayerTest.cs" />
     <Compile Include="GameLogic\Game.cs" />
     <Compile Include="ConsoleView\ConsoleGame.cs" />

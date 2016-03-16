@@ -12,7 +12,7 @@ namespace TicTacToe
             this.console = console;
         }
 
-        public Game SetupGame()
+        public virtual Game SetupGame()
         {
             switch (console.TakeGameOptionsChoice())
             {
