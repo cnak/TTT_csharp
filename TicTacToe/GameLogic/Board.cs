@@ -18,6 +18,21 @@ namespace TicTacToe
             this.grid = grid.ToCharArray();
         }
 
+        public Board(Board board)
+        {
+            this.grid = board.grid;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Board p = (Board)obj;
+
+            return (grid == p.grid);
+        }
+
         public virtual bool IsGameOver()
         {
             return IsGameWon() || AreThereAnyMovesLeft();

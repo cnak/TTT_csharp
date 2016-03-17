@@ -8,6 +8,18 @@ namespace TicTacToe
     class BoardTest
     {
         [Test]
+        public void CreateANewBoardOffAnExistingBoard()
+        {
+            var board = new Board("XO-" +
+                                  "OX-" +
+                                  "--O");
+
+            var copiedBoard = new Board(board);
+
+            Assert.IsTrue(copiedBoard.Equals(board));
+        }
+
+        [Test]
         public void ReturnRemainingBoardMoves()
         {
             var board = new Board("XO-" +
