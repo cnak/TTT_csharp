@@ -172,5 +172,10 @@ namespace TicTacToe
         {
             return CalculateRemainingMoves()%2 == 0 ? "O" : "X";
         }
+
+        public bool IsGameDrawn()
+        {
+            return IsGameOver() && !IsGameWon();
+        }
     }
 }

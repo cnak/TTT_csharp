@@ -266,5 +266,36 @@ namespace TicTacToe
 
             Assert.AreEqual("O", board.GetWinner());
         }
+
+        [Test]
+        public void ReturnGameWasNotDrawn()
+        {
+            var board = new Board("XXX" +
+                                  "XOO" +
+                                  "OXO");
+
+            Assert.IsFalse(board.IsGameDrawn());
+        }
+
+        [Test]
+        public void ReturnGameNotDrawnWhenGameNotComplete()
+        {
+            var board = new Board("XO-" +
+                                  "OO-" +
+                                  "XXO");
+
+            Assert.IsFalse(board.IsGameDrawn());
+        }
+
+        [Test]
+        public void ReturnGameWasDrawn()
+        {
+            var board = new Board("XOX" +
+                                  "OOX" +
+                                  "XXO");
+
+            Assert.IsTrue(board.IsGameDrawn());
+        }
+
     }
 }
