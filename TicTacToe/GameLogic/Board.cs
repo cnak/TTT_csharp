@@ -135,7 +135,7 @@ namespace TicTacToe
             return rangeOfMoves.Contains(CalculateRemainingMoves());
         }
 
-        private int CalculateRemainingMoves()
+        public int CalculateRemainingMoves()
         {
             return (grid.Length - grid.Count(IsValidMarker));
         }
@@ -170,12 +170,23 @@ namespace TicTacToe
 
         public string CurrentPlayer()
         {
-            return CalculateRemainingMoves()%2 == 0 ? "O" : "X";
+            return CalculateRemainingMoves() % 2 == 0 ? "O" : "X";
         }
 
         public bool IsGameDrawn()
         {
             return IsGameOver() && !IsGameWon();
+        }
+
+        public IList GetRemainingMoveSpaces()
+        {
+            var remainingMovePositions = new ArrayList();
+            for (var position = 0; position < grid.Length; position++)
+            {
+                if (IsEmptyPosition(position))
+                    remainingMovePositions.Add(position);
+            }
+            return remainingMovePositions;
         }
     }
 }

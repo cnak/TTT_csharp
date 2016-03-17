@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using NUnit.Framework;
 namespace TicTacToe
@@ -6,6 +7,20 @@ namespace TicTacToe
     [TestFixture]
     class BoardTest
     {
+        [Test]
+        public void ReturnRemainingBoardMoves()
+        {
+            var board = new Board("XO-" +
+                                  "OX-" +
+                                  "--O");
+
+            IList remainingMoves = board.GetRemainingMoveSpaces();
+
+            var remainingTestMoves = new ArrayList {2, 5, 6, 7};
+
+            Assert.AreEqual(remainingTestMoves, remainingMoves);
+
+        }
         [Test]
         public void ReturnXAsTheOtherPlayer()
         {
