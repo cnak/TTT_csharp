@@ -8,8 +8,6 @@ namespace TicTacToe
     public class Board
     {
         private readonly char[] grid;
-        private string currentPlayer = "X";
-        private string otherPlayer = "O";
 
         public Board() : this(EmptyGrid())
         {
@@ -163,6 +161,11 @@ namespace TicTacToe
                 validMarkers.Add(mark);
 
             return validMarkers.ToArray().GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key.ToString();
+        }
+
+        public string OtherPlayer()
+        {
+            return CurrentPlayer() == "X" ? "O" : "X";
         }
 
         public string CurrentPlayer()

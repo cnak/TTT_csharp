@@ -7,6 +7,15 @@ namespace TicTacToe
     class BoardTest
     {
         [Test]
+        public void ReturnXAsTheOtherPlayer()
+        {
+            Board board = new Board("XOX" +
+                                    "OX-" +
+                                    "---");
+            Assert.AreEqual("X", board.OtherPlayer());
+        }
+
+        [Test]
         public void ReturnOAsTheCurrentPlayer()
         {
             Board board = new Board("XOX" +
