@@ -8,6 +8,8 @@ namespace TicTacToe
     public class Board
     {
         private readonly char[] grid;
+        private string currentPlayer = "X";
+        private string otherPlayer = "O";
 
         public Board() : this(EmptyGrid())
         {
@@ -152,7 +154,8 @@ namespace TicTacToe
 
         private string MostOccurencesMark()
         {
-            if (CalculateRemainingMoves() == grid.Length) return "";
+            if (CalculateRemainingMoves() == grid.Length)
+                return "";
 
             var validMarkers = new ArrayList();
 
@@ -160,6 +163,11 @@ namespace TicTacToe
                 validMarkers.Add(mark);
 
             return validMarkers.ToArray().GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key.ToString();
+        }
+
+        public string CurrentPlayer()
+        {
+            return CalculateRemainingMoves()%2 == 0 ? "O" : "X";
         }
     }
 }

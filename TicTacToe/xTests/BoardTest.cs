@@ -7,6 +7,42 @@ namespace TicTacToe
     class BoardTest
     {
         [Test]
+        public void ReturnOAsTheCurrentPlayer()
+        {
+            Board board = new Board("XOX" +
+                                    "OX-" +
+                                    "---");
+            Assert.AreEqual("O", board.CurrentPlayer());
+        }
+
+        [Test]
+        public void ReturnsXAsTheCurrentPlayer()
+        {
+            Board board = new Board("XOX" +
+                                    "OXO" +
+                                    "---");
+            Assert.AreEqual("X", board.CurrentPlayer());
+        }
+
+        [Test]
+        public void ReturnsXAsTheCurrentPlayer2()
+        {
+            Board board = new Board("XOX" +
+                                    "O--" +
+                                    "---");
+            Assert.AreEqual("X", board.CurrentPlayer());
+        }
+
+        [Test]
+        public void ReturnsOAsCurrentPlayer()
+        {
+            Board board = new Board("XOX" +
+                                    "---" +
+                                    "---");
+            Assert.AreEqual("O", board.CurrentPlayer());
+        }
+
+        [Test]
         public void InformsTheGameIsNotOver()
         {
             Board board = new Board();
@@ -17,8 +53,8 @@ namespace TicTacToe
         [Test]
         public void ShouldReturnGameOver()
         {
-            Board board = new Board("XOX"+ 
-                                    "OXO"+
+            Board board = new Board("XOX" +
+                                    "OXO" +
                                     "X--");
 
             Assert.IsTrue(board.IsGameOver());
@@ -28,8 +64,8 @@ namespace TicTacToe
         [Test]
         public void InformsTheGameIsOverWithNoMoreMoves()
         {
-            Board board = new Board("XOX"+ 
-                                    "OXO"+
+            Board board = new Board("XOX" +
+                                    "OXO" +
                                     "XOX");
 
             Assert.IsTrue(board.IsGameOver());
@@ -38,18 +74,18 @@ namespace TicTacToe
         [Test]
         public void InformsGameOverWhenGameIsWon()
         {
-             Board board = new Board("XOX" +
-                                     "-XO" +
-                                     "-OX");
+            Board board = new Board("XOX" +
+                                    "-XO" +
+                                    "-OX");
             Assert.IsTrue(board.IsGameOver());
         }
 
         [Test]
         public void InformsGameNotOverWhenGameRemainingMovesLeft()
         {
-             Board board = new Board("XOX" +
-                                     "-XO" +
-                                     "-OO");
+            Board board = new Board("XOX" +
+                                    "-XO" +
+                                    "-OO");
             Assert.IsFalse(board.IsGameOver());
         }
 
@@ -66,9 +102,9 @@ namespace TicTacToe
         [Test]
         public void InformsGameHasNotBeenWon()
         {
-             Board board = new Board("XOX" +
-                                     "XXO" +
-                                     "OXO");
+            Board board = new Board("XOX" +
+                                    "XXO" +
+                                    "OXO");
 
             Assert.IsFalse((board.IsGameWon()));
         }
@@ -178,7 +214,7 @@ namespace TicTacToe
         {
             var board = new Board();
 
-             board.MakeMove(0, 'X');
+            board.MakeMove(0, 'X');
 
             Assert.AreEqual("X", board.PositionAt(0));
         }
@@ -186,8 +222,8 @@ namespace TicTacToe
         [Test]
         public void ThrowsExceptionWhenMoveIsPlaceOnOccupiedPosition()
         {
-            var board = new Board("---"+
-                                  "X--"+
+            var board = new Board("---" +
+                                  "X--" +
                                   "---");
             Assert.Throws<ArgumentException>(
                 () => board.MakeMove(3, 'O'));
@@ -196,8 +232,8 @@ namespace TicTacToe
         [Test]
         public void ThrowsExceptionWhenMoveIsOutsideBoard()
         {
-            var board = new Board("---"+
-                                  "---"+
+            var board = new Board("---" +
+                                  "---" +
                                   "---");
             Assert.Throws<ArgumentException>(
                 () => board.MakeMove(9, 'O'));
