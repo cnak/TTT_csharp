@@ -5,12 +5,26 @@ namespace TicTacToe.xTests
     class MinimaxTest
     {
         [Test]
+        public void ShouldBlockTheOpponentByPlayingThree()
+        {
+            var board = new Board("XO-" +
+                                  "-XX" +
+                                  "OXO");
+//            var board = new Board("-X-" +
+//                                  "--X" +
+//                                  "OOX");
+//
+            Assert.AreEqual(3, (new Minimax().Move(board)));
+//            Assert.AreEqual(2, (new Minimax().Move(board)));
+        }
+
+        [Test]
         public void ReturnsOneAsTheWinningMove()
         {
             var board = new Board("--X" +
                                   "XOX" +
                                   "-O-");
-            var best_move = Minimax.Move(board);
+            var best_move = new Minimax().Move(board);
             Assert.AreEqual(1, best_move);
         }
 
@@ -22,7 +36,7 @@ namespace TicTacToe.xTests
                                   "X--");
             var minimaxPlayer = "O";
 
-            var score = Minimax.Score(board, 0, minimaxPlayer);
+            var score = new Minimax().Score(board, 0, minimaxPlayer);
             Assert.AreEqual(-10, score);
         }
 
@@ -35,7 +49,7 @@ namespace TicTacToe.xTests
 
             var minimaxPlayer = "O";
 
-            var score = Minimax.Score(board, 0, minimaxPlayer);
+            var score = new Minimax().Score(board, 0, minimaxPlayer);
             Assert.AreEqual(0, score);
         }
 
@@ -48,7 +62,7 @@ namespace TicTacToe.xTests
 
             var minimaxPlayer = "O";
 
-            var score = Minimax.Score(board, 0, minimaxPlayer);
+            var score = new Minimax().Score(board, 0, minimaxPlayer);
             Assert.AreEqual(10, score);
         }
     }
