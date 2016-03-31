@@ -3,23 +3,23 @@ using NUnit.Framework.Constraints;
 
 namespace TicTacToe
 {
-    internal class ConsoleGameSetup
+    internal class GameSetup
     {
-        private IConsoleGame console;
+        private IGameConsole console;
 
-        public ConsoleGameSetup(IConsoleGame console)
+        public GameSetup(IGameConsole console)
         {
             this.console = console;
         }
 
-        public virtual Game SetupGame()
+        public Game SetupGame()
         {
             switch (console.TakeGameOptionsChoice())
             {
                 case 1:
-                    return new Game(new Board(), console, new ConsoleHumanPlayer(console), new ComputerPlayer());
+                    return new Game(new Board(), console, new HumanPlayer(console), new ComputerPlayer());
                 case 2:
-                    return new Game(new Board(), console, new ConsoleHumanPlayer(console), new ConsoleHumanPlayer());
+                    return new Game(new Board(), console, new HumanPlayer(console), new HumanPlayer());
                 case 3:
                     return new Game(new Board(), console, new ComputerPlayer(), new ComputerPlayer());
             }

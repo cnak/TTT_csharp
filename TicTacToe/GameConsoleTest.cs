@@ -1,51 +1,42 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace TicTacToe
 {
     [TestFixture]
-    public class ConsoleGameTest
+    public class GameConsoleTest
     {
-        private IConsoleGame _consoleGame;
+        private IGameConsole gameConsole;
 
         [Test]
-        public void TakeNumber1AsGameOptionsChoice()
-        {
-            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
-
-            _consoleGame = new ConsoleGame(new StreamReader(stream), null);
-
-            Assert.AreEqual(1, _consoleGame.TakeGameOptionsChoice());
-        }
-
-        [Test]
-        public void TakeNumber3AsGameOptionsChoice()
+        public void TakeGameOptionsChoice()
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("3"));
 
-            _consoleGame = new ConsoleGame(new StreamReader(stream), null);
+            gameConsole = new GameConsole(new StreamReader(stream), null);
 
-            Assert.AreEqual(3, _consoleGame.TakeGameOptionsChoice());
+            Assert.AreEqual(3, gameConsole.TakeGameOptionsChoice());
         }
 
         [Test]
         public void DisplayGameOptions()
         {
-             var boardOptions = NewLine() +
+            var boardOptions = "\n-------\n" +
                                "---Game Options---" +
-                               NewLine() +
                                "1. Human Vs Computer" +
-                               NewLine() +
                                "2. Human vs Human" +
-                               NewLine() +
                                "3. Computer vs Computer" +
-                               NewLine();
+                               "\n";
 
             MemoryStream stream = new MemoryStream();
-            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
 
-            _consoleGame.DisplayGameOptions();
+            gameConsole.DisplayGameOptions();
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -57,9 +48,9 @@ namespace TicTacToe
         {
             var emptyBoard = "\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n|-|-|-|\n-------\n";
             MemoryStream stream = new MemoryStream();
-            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
 
-            _consoleGame.DisplayBoard(new Board());
+            gameConsole.DisplayBoard(new Board());
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -70,10 +61,10 @@ namespace TicTacToe
         public void DisplaysBoardWithOneMove()
         {
             MemoryStream stream = new MemoryStream();
-            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
             var playedBoard = "\n-------\n|-|-|-|\n-------\n|X|-|-|\n-------\n|-|-|-|\n-------\n";
 
-            _consoleGame.DisplayBoard(new Board("---X-----"));
+            gameConsole.DisplayBoard(new Board("---X-----"));
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -84,9 +75,9 @@ namespace TicTacToe
         public void AskForInputPosition()
         {
             MemoryStream stream = new MemoryStream();
-            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
 
-            _consoleGame.AskForInputPosition();
+            gameConsole.AskForInputPosition();
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -98,18 +89,18 @@ namespace TicTacToe
         {
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes("1"));
 
-            _consoleGame = new ConsoleGame(new StreamReader(stream), null);
+            gameConsole = new GameConsole(new StreamReader(stream), null);
 
-            Assert.AreEqual(1, _consoleGame.TakePlayerChoice());
+            Assert.AreEqual(1, gameConsole.TakePlayerChoice());
         }
 
         [Test]
         public void DisplayGameWonResult()
         {
             MemoryStream stream = new MemoryStream();
-            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
 
-            _consoleGame.DisplayGameWonResult("X");
+            gameConsole.DisplayGameWonResult("X");
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
@@ -120,18 +111,13 @@ namespace TicTacToe
         public void DisplayGameDrawnResult()
         {
             MemoryStream stream = new MemoryStream();
-            _consoleGame = new ConsoleGame(null, new StreamWriter(stream));
+            gameConsole = new GameConsole(null, new StreamWriter(stream));
 
-            _consoleGame.DisplayGameDrawnResult();
+            gameConsole.DisplayGameDrawnResult();
 
             StreamReader sr = new StreamReader(stream);
             stream.Seek(0, SeekOrigin.Begin);
             Assert.AreEqual("\nIt was a Draw\n", sr.ReadToEnd());
-        }
-
-         private string NewLine()
-        {
-            return "\n-------\n";
         }
     }
 }

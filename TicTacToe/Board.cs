@@ -18,21 +18,6 @@ namespace TicTacToe
             this.grid = grid.ToCharArray();
         }
 
-        public Board(Board board)
-        {
-            this.grid = board.grid;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || GetType() != obj.GetType())
-                return false;
-
-            Board p = (Board)obj;
-
-            return (grid == p.grid);
-        }
-
         public virtual bool IsGameOver()
         {
             return IsGameWon() || AreThereAnyMovesLeft();
@@ -150,7 +135,7 @@ namespace TicTacToe
             return rangeOfMoves.Contains(CalculateRemainingMoves());
         }
 
-        public int CalculateRemainingMoves()
+        private int CalculateRemainingMoves()
         {
             return (grid.Length - grid.Count(IsValidMarker));
         }
@@ -167,8 +152,7 @@ namespace TicTacToe
 
         private string MostOccurencesMark()
         {
-            if (CalculateRemainingMoves() == grid.Length)
-                return "";
+            if (CalculateRemainingMoves() == grid.Length) return "";
 
             var validMarkers = new ArrayList();
 
@@ -176,32 +160,6 @@ namespace TicTacToe
                 validMarkers.Add(mark);
 
             return validMarkers.ToArray().GroupBy(x => x).OrderByDescending(x => x.Count()).First().Key.ToString();
-        }
-
-        public string OtherPlayer()
-        {
-            return CurrentPlayer() == "X" ? "O" : "X";
-        }
-
-        public string CurrentPlayer()
-        {
-            return CalculateRemainingMoves() % 2 == 0 ? "O" : "X";
-        }
-
-        public bool IsGameDrawn()
-        {
-            return IsGameOver() && !IsGameWon();
-        }
-
-        public IList GetRemainingMoveSpaces()
-        {
-            var remainingMovePositions = new ArrayList();
-            for (var position = 0; position < grid.Length; position++)
-            {
-                if (IsEmptyPosition(position))
-                    remainingMovePositions.Add(position);
-            }
-            return remainingMovePositions;
         }
     }
 }

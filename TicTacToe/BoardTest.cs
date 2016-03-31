@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using NUnit.Framework;
 namespace TicTacToe
@@ -7,77 +6,6 @@ namespace TicTacToe
     [TestFixture]
     class BoardTest
     {
-        [Test]
-        public void CreateANewBoardOffAnExistingBoard()
-        {
-            var board = new Board("XO-" +
-                                  "OX-" +
-                                  "--O");
-
-            var copiedBoard = new Board(board);
-
-            Assert.IsTrue(copiedBoard.Equals(board));
-        }
-
-        [Test]
-        public void ReturnRemainingBoardMoves()
-        {
-            var board = new Board("XO-" +
-                                  "OX-" +
-                                  "--O");
-
-            IList remainingMoves = board.GetRemainingMoveSpaces();
-
-            var remainingTestMoves = new ArrayList {2, 5, 6, 7};
-
-            Assert.AreEqual(remainingTestMoves, remainingMoves);
-
-        }
-        [Test]
-        public void ReturnXAsTheOtherPlayer()
-        {
-            Board board = new Board("XOX" +
-                                    "OX-" +
-                                    "---");
-            Assert.AreEqual("X", board.OtherPlayer());
-        }
-
-        [Test]
-        public void ReturnOAsTheCurrentPlayer()
-        {
-            Board board = new Board("XOX" +
-                                    "OX-" +
-                                    "---");
-            Assert.AreEqual("O", board.CurrentPlayer());
-        }
-
-        [Test]
-        public void ReturnsXAsTheCurrentPlayer()
-        {
-            Board board = new Board("XOX" +
-                                    "OXO" +
-                                    "---");
-            Assert.AreEqual("X", board.CurrentPlayer());
-        }
-
-        [Test]
-        public void ReturnsXAsTheCurrentPlayer2()
-        {
-            Board board = new Board("XOX" +
-                                    "O--" +
-                                    "---");
-            Assert.AreEqual("X", board.CurrentPlayer());
-        }
-
-        [Test]
-        public void ReturnsOAsCurrentPlayer()
-        {
-            Board board = new Board("XOX" +
-                                    "---" +
-                                    "---");
-            Assert.AreEqual("O", board.CurrentPlayer());
-        }
-
         [Test]
         public void InformsTheGameIsNotOver()
         {
@@ -89,8 +17,8 @@ namespace TicTacToe
         [Test]
         public void ShouldReturnGameOver()
         {
-            Board board = new Board("XOX" +
-                                    "OXO" +
+            Board board = new Board("XOX"+ 
+                                    "OXO"+
                                     "X--");
 
             Assert.IsTrue(board.IsGameOver());
@@ -100,8 +28,8 @@ namespace TicTacToe
         [Test]
         public void InformsTheGameIsOverWithNoMoreMoves()
         {
-            Board board = new Board("XOX" +
-                                    "OXO" +
+            Board board = new Board("XOX"+ 
+                                    "OXO"+
                                     "XOX");
 
             Assert.IsTrue(board.IsGameOver());
@@ -110,18 +38,18 @@ namespace TicTacToe
         [Test]
         public void InformsGameOverWhenGameIsWon()
         {
-            Board board = new Board("XOX" +
-                                    "-XO" +
-                                    "-OX");
+             Board board = new Board("XOX" +
+                                     "-XO" +
+                                     "-OX");
             Assert.IsTrue(board.IsGameOver());
         }
 
         [Test]
         public void InformsGameNotOverWhenGameRemainingMovesLeft()
         {
-            Board board = new Board("XOX" +
-                                    "-XO" +
-                                    "-OO");
+             Board board = new Board("XOX" +
+                                     "-XO" +
+                                     "-OO");
             Assert.IsFalse(board.IsGameOver());
         }
 
@@ -138,9 +66,9 @@ namespace TicTacToe
         [Test]
         public void InformsGameHasNotBeenWon()
         {
-            Board board = new Board("XOX" +
-                                    "XXO" +
-                                    "OXO");
+             Board board = new Board("XOX" +
+                                     "XXO" +
+                                     "OXO");
 
             Assert.IsFalse((board.IsGameWon()));
         }
@@ -250,7 +178,7 @@ namespace TicTacToe
         {
             var board = new Board();
 
-            board.MakeMove(0, 'X');
+             board.MakeMove(0, 'X');
 
             Assert.AreEqual("X", board.PositionAt(0));
         }
@@ -258,8 +186,8 @@ namespace TicTacToe
         [Test]
         public void ThrowsExceptionWhenMoveIsPlaceOnOccupiedPosition()
         {
-            var board = new Board("---" +
-                                  "X--" +
+            var board = new Board("---"+
+                                  "X--"+
                                   "---");
             Assert.Throws<ArgumentException>(
                 () => board.MakeMove(3, 'O'));
@@ -268,8 +196,8 @@ namespace TicTacToe
         [Test]
         public void ThrowsExceptionWhenMoveIsOutsideBoard()
         {
-            var board = new Board("---" +
-                                  "---" +
+            var board = new Board("---"+
+                                  "---"+
                                   "---");
             Assert.Throws<ArgumentException>(
                 () => board.MakeMove(9, 'O'));
@@ -293,36 +221,5 @@ namespace TicTacToe
 
             Assert.AreEqual("O", board.GetWinner());
         }
-
-        [Test]
-        public void ReturnGameWasNotDrawn()
-        {
-            var board = new Board("XXX" +
-                                  "XOO" +
-                                  "OXO");
-
-            Assert.IsFalse(board.IsGameDrawn());
-        }
-
-        [Test]
-        public void ReturnGameNotDrawnWhenGameNotComplete()
-        {
-            var board = new Board("XO-" +
-                                  "OO-" +
-                                  "XXO");
-
-            Assert.IsFalse(board.IsGameDrawn());
-        }
-
-        [Test]
-        public void ReturnGameWasDrawn()
-        {
-            var board = new Board("XOX" +
-                                  "OOX" +
-                                  "XXO");
-
-            Assert.IsTrue(board.IsGameDrawn());
-        }
-
     }
 }

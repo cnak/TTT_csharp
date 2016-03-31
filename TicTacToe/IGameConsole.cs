@@ -1,5 +1,5 @@
 ﻿namespace TicTacToe {
-    public interface IConsoleGame
+    public interface IGameConsole
     {
         void DisplayBoard(Board board);
         void AskForInputPosition();

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TicTacToe.xTests;
 
 namespace TicTacToe
 {
@@ -11,8 +10,13 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            var consoleGame = new ConsoleGame(Console.In, Console.Out);
-            var app = new AppGame(consoleGame, new ConsoleGameSetup(consoleGame));
+            GameConsole gameConsole = new GameConsole(Console.In, Console.Out);
+
+            //            Game app = new Game(gameConsole);
+//            HumanPlayer human = new HumanPlayer();
+//            ComputerPlayer computer = new ComputerPlayer();
+//            Game app = new Game(new Board(), gameConsole, human, computer);
+            Game app = new Game(new Board(), gameConsole, new ComputerPlayer(), new ComputerPlayer());
             app.Start();
         }
     }
