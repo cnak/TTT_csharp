@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    public class GameConsole : IGameConsole
+    public class ConsoleGame : IConsoleGame
     {
         private readonly TextWriter writer;
         private readonly TextReader reader;
 
-        public GameConsole(TextReader reader, TextWriter writer)
+        public ConsoleGame(TextReader reader, TextWriter writer)
         {
             this.reader = reader;
             this.writer = writer;
@@ -53,17 +53,20 @@ namespace TicTacToe
         {
             var boardOptions = NewLine() +
                                "---Game Options---" +
+                               NewLine() +
                                "1. Human Vs Computer" +
+                               NewLine() +
                                "2. Human vs Human" +
+                               NewLine() +
                                "3. Computer vs Computer" +
-                               "\n";
+                               NewLine();
             
             Write(boardOptions);
         }
 
         public int TakeGameOptionsChoice()
         {
-            return 3;
+            return TakePlayerChoice();
         }
 
         private string FormatBoard(Board board)

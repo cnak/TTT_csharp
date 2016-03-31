@@ -7,8 +7,8 @@ namespace TicTacToe
         [Test]
         public void GetsPlayersMoveFromTheConsole()
         {
-            var console = new SpyGameConsole();
-            var player = new HumanPlayer(console);
+            var console = new SpyConsoleGame();
+            var player = new ConsoleHumanPlayer(console);
 
             console.SetPlayerMove(2);
 

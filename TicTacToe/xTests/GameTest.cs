@@ -7,21 +7,20 @@ namespace TicTacToe
     public class GameTest
     {
         private Game game;
-        private SpyGameConsole console;
-        private SpyComputerPlayer computerPlayer;
+        private SpyConsoleGame console;
 
         [SetUp]
         public void SetupGame()
         {
-            console = new SpyGameConsole();
+            console = new SpyConsoleGame();
             game = new Game(console);
         }
 
         [Test]
         public void ReturnTheOtherPlayer()
         {
-            var player1 = new HumanPlayer(console);
-            var player2 = new HumanPlayer(console);
+            var player1 = new ConsoleHumanPlayer(console);
+            var player2 = new ConsoleHumanPlayer(console);
             game = new Game(new BoardStub(0), console, player1, player2);
 
             Assert.AreEqual(player1, game.CurrentPlayer());
@@ -125,7 +124,7 @@ namespace TicTacToe
         [Test]
         public void TakePlayerMoveMappingItToCorrectPositionOnBoard()
         {
-            console = new SpyGameConsole();
+            console = new SpyConsoleGame();
             game = new Game(console);
 
             console.SetPlayerMove(5);
@@ -186,11 +185,11 @@ namespace TicTacToe
         {
             var board = new BoardStub(0);
             ComputerPlayer computer = new ComputerPlayer();
-            HumanPlayer human = new HumanPlayer();
+            ConsoleHumanPlayer consoleHuman = new ConsoleHumanPlayer();
 
-            game = new Game(board, console, human, computer);
+            game = new Game(board, console, consoleHuman, computer);
 
-            Assert.AreEqual(game.CurrentPlayer(), human);
+            Assert.AreEqual(game.CurrentPlayer(), consoleHuman);
         }
 
         [Test]
@@ -198,9 +197,9 @@ namespace TicTacToe
         {
             var board = new BoardStub(0);
             ComputerPlayer computer = new ComputerPlayer();
-            HumanPlayer human = new HumanPlayer();
+            ConsoleHumanPlayer consoleHuman = new ConsoleHumanPlayer();
 
-            game = new Game(board, console, human, computer);
+            game = new Game(board, console, consoleHuman, computer);
 
             game.PlayMove(1);
 
@@ -212,22 +211,22 @@ namespace TicTacToe
         {
             var board = new BoardStub(0);
             ComputerPlayer computer = new ComputerPlayer();
-            HumanPlayer human = new HumanPlayer();
+            ConsoleHumanPlayer consoleHuman = new ConsoleHumanPlayer();
 
-            game = new Game(board, console, human, computer);
+            game = new Game(board, console, consoleHuman, computer);
 
             game.PlayMove(1);
             game.PlayMove(2);
 
-            Assert.AreEqual(human, game.CurrentPlayer());
+            Assert.AreEqual(consoleHuman, game.CurrentPlayer());
         }
 
         [Test]
         public void StartAHumanVsHumanGameWithHuman1()
         {
             var board = new BoardStub(0);
-            var human1 = new HumanPlayer();
-            var human2 = new HumanPlayer();
+            var human1 = new ConsoleHumanPlayer();
+            var human2 = new ConsoleHumanPlayer();
 
             game = new Game(board, console, human1, human2);
 
@@ -238,8 +237,8 @@ namespace TicTacToe
         public void SwitchToHumanPlayerForHumanVsHumanGame()
         {
             var board = new BoardStub(0);
-            var human1 = new HumanPlayer();
-            var human2 = new HumanPlayer();
+            var human1 = new ConsoleHumanPlayer();
+            var human2 = new ConsoleHumanPlayer();
 
             game = new Game(board, console, human1, human2);
 
@@ -251,7 +250,7 @@ namespace TicTacToe
         [Test]
         public void TakeHumanPlayersMove()
         {
-            var humanPlayer = new SpyHumanPlayer();
+            var humanPlayer = new SpyConsoleHumanPlayer();
 
             game = new Game(new Board(), console, humanPlayer, new ComputerPlayer());
             game.TakePlayerMove();
@@ -259,7 +258,7 @@ namespace TicTacToe
             Assert.IsTrue(humanPlayer.wasGetMoveCalled);
         }
 
-        private class SpyHumanPlayer : HumanPlayer
+        private class SpyConsoleHumanPlayer : ConsoleHumanPlayer
         {
             public bool wasGetMoveCalled;
 
@@ -275,7 +274,7 @@ namespace TicTacToe
         {
             var computerPlayer = new SpyComputerPlayer();
 
-            game = new Game(new Board(), console, new HumanPlayer(), computerPlayer);
+            game = new Game(new Board(), console, new ConsoleHumanPlayer(), computerPlayer);
             game.PlayMove(0);
             game.TakePlayerMove();
 
