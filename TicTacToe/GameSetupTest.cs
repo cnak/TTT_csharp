@@ -10,12 +10,12 @@ namespace TicTacToe
         [Test]
         public void CreateAHumanVsComputerGame()
         {
-            var console = new SpyConsoleGame();
-            var gameSetup = new ConsoleGameSetup(console);
+            var console = new SpyGameConsole();
+            var gameSetup = new GameSetup(console);
 
             console.setGameOptionsChoice(1);
             var game = gameSetup.SetupGame();
-            var IsHumanVsComputer = (game.CurrentPlayer() is ConsoleHumanPlayer) && (game.OtherPlayer() is ComputerPlayer);
+            var IsHumanVsComputer = (game.CurrentPlayer() is HumanPlayer) && (game.OtherPlayer() is ComputerPlayer);
 
             Assert.IsTrue(IsHumanVsComputer);
         }
@@ -23,13 +23,13 @@ namespace TicTacToe
         [Test]
         public void CreateAHumanVsHumanGame()
         {
-            var console = new SpyConsoleGame();
+            var console = new SpyGameConsole();
 
             console.setGameOptionsChoice(2);
-            var gameSetup = new ConsoleGameSetup(console);
+            var gameSetup = new GameSetup(console);
 
             var game = gameSetup.SetupGame();
-            var IsHumanVsHuman = (game.CurrentPlayer() is ConsoleHumanPlayer) && (game.OtherPlayer() is ConsoleHumanPlayer);
+            var IsHumanVsHuman = (game.CurrentPlayer() is HumanPlayer) && (game.OtherPlayer() is HumanPlayer);
 
             Assert.IsTrue(IsHumanVsHuman);
         }
@@ -37,10 +37,10 @@ namespace TicTacToe
         [Test]
         public void CreateAComputerVsComputerGame()
         {
-            var console = new SpyConsoleGame();
+            var console = new SpyGameConsole();
 
             console.setGameOptionsChoice(3);
-            var gameSetup = new ConsoleGameSetup(console);
+            var gameSetup = new GameSetup(console);
 
             var game = gameSetup.SetupGame();
             var IsComputerVsComputer = (game.CurrentPlayer() is ComputerPlayer) && (game.OtherPlayer() is ComputerPlayer);

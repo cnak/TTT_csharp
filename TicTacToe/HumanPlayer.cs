@@ -1,14 +1,14 @@
 ﻿namespace TicTacToe
 {
-    public class ConsoleHumanPlayer : IPlayer
+    public class HumanPlayer : IPlayer
     {
-        private IConsoleGame console;
+        private IGameConsole console;
 
-        public ConsoleHumanPlayer()
+        public HumanPlayer()
         {
         }
 
-        public ConsoleHumanPlayer(IConsoleGame console)
+        public HumanPlayer(IGameConsole console)
         {
             this.console = console;
         }
